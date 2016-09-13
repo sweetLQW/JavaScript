@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//10/0 //返回infinity，表示无穷大，-10返回-infinity，无穷小
+		// var str = "aaaa";//原始类型用typeof检测
+		// var arr = [];
+		// var reg = / /;
+		// var date = new Date();//数组 正则表达式 日期 对象类型返回的都是object
+		// console.log(arr instanceof Object)//检测arr是不是对象
+		//下面是转换数据类型
+		// var str1 = "123ds";
+		// var num = Number(str1);//显示NaN
+		// console.log(num);
+		// var str1 = "123ds";
+		// var num = parseInt(str1);//显示123，从第一位开始找数字，找到后找下一位，直到找到不是数字的位停止，如果第一位就不是数字，则还是NaN
+		// console.log(num);
+		// var str1 = "123.2d2";
+		// var num = parseFloat(str1);//显示123.2，从第一位开始找数字或点且点只能找一次，然后找到后找下一位，直到找到不是数字的位停止，如果第一位就不是数字或点，则还是NaN
+		// console.log(num);
+		var str = "hello";
+		console.log(!!str);//叹号后面跟的是布尔类型，当不是布尔时，自动转换。转换完成后再加一个叹号，返回正常的类型
+		var  nu = null;
+		var str = nu.toString();
+		console.log(str);//报错 null不是包装对象，不能直接调用方法可用string()
+
+	</script>
+</body>
+</html>

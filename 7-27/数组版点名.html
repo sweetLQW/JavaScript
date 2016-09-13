@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button>点名</button>
+	<script>
+		var oBtn = document.querySelector("button");
+		var arr=[
+					"蝙蝠侠",
+					"绿巨人",
+					"蜘蛛侠",
+					"神奇四侠",
+					"宙斯",
+					"钢铁侠",
+					"黑寡妇"
+				];
+		var newArr = [];
+		function selectorPerson(){
+			var x = Math.floor(Math.random()*arr.length);
+			var person = arr[x];
+			if(newArr.length === 0){
+				console.log(person);
+				newArr.push(person);
+			}else if(newArr.length < arr.length){
+				for(var i=0;i<newArr.length;i++){
+					if(newArr[i] === person){
+						selectorPerson();
+						return;
+					}
+				}
+				newArr.push(person);
+				console.log(person);
+			}
+		}
+		oBtn.onclick = selectorPerson;
+	</script>
+</body>
+</html>

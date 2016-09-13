@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var arr = [1,5,2,7,9,3,4];
+		//方法一,方法不简便
+		// function searchMax(array){
+		// 	for(var i = 0;i<array.length;i++){
+		// 		if(array[i]>array[i+1]){
+		// 			var temp = array[i];
+		// 			array[i] = array[i+1];
+		// 			array[i+1] = temp;
+		// 		}
+		// 	}
+		// 	return array[array.length-1];
+		// }
+		//方法二
+		function searchMax(array){
+			var max = array[0];
+			for(var i = 1;i<array.length;i++){
+				if(array[i]>max){
+					max = array[i];
+				}
+			}
+			return max;
+		}
+		var result = searchMax(arr);
+		console.log(result)
+	</script>
+</body>
+</html>

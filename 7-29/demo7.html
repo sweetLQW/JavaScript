@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>构造函数</title>
+</head>
+<body>
+	<script>
+	// function Cat(name){
+	// 	this.name = name;
+	// 	this.sayName = function(){
+	// 		alert('我的名字是' + this.name);
+	// 	}
+	// }
+	// var cat1 = new Cat("miaomiao");//创建了一个cat1对象。this指的就是cat1
+	// var cat2 = new Cat("hha");
+	// cat2.sayName();
+	// cat1.sayName();
+
+	// var obj = {
+	// 	name:"cat",
+	// 	sayName:function(){
+	// 		alert(this.name);
+	// 	}
+	// }
+	// obj.sayName();
+	//原型
+	// function Cat(name){
+	// 	this.name = name;
+	// 	}
+	// Cat.prototype.sayName = function(){//cat.prototype指向内存中的一个对象，叫做它的原型对象
+	// 		alert('我的名字是' + this.name);
+	// }
+	// var cat = new Cat("hhhh");//用new Cat创造出来的对象(实例)可以调用它（Cat）创建的对象方法
+	// var cat1 = new Cat("whhhhh");
+	// cat1.sayName();//cat和cat1都可以调用Cat.prototype.sayName这个原型对象
+	// cat.sayName();
+	//原型链
+	function Cat(name){
+		this.name = name;
+		}
+	Cat.prototype.sayName = function(){
+			alert('我的新名字是' + this.name);
+	}
+	var cat = new Cat("hhhh");
+	function newCat(name){
+		this.name = name;
+		}
+	newCat.prototype = new Cat();//newcat可以调用cat的属性和方法，反之不行，子级调用父级
+	newCat.prototype.sayName = function(){
+			alert('我的名字是' + this.name);
+	} 
+	newCat.prototype.color = "white";
+	var newcat = new newCat("aaaaaa");
+	newcat.sayName();
+	</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" class="txt">
+	<button class="btn">添加</button>
+	<p>喜欢的水果：</p>
+	<ul class="list">
+		<li>香蕉 <span class="del">删除</span></li>
+		<li>葡萄 <span class="del">删除</span></li>
+		<li>毛桃 <span class="del">删除</span></li>
+		<li>油桃 <span class="del">删除</span></li>
+		<li>苹果 <span class="del">删除</span></li>
+	</ul>
+	<script>
+		var oTxt = document.querySelector(".txt");
+		var oBtn = document.querySelector(".btn");
+		var oList = document.querySelector(".list");
+		var oDel = document.querySelector("span");
+		oBtn.onclick = function(){
+			if(oTxt.value){
+				var span = document.createTextNode(" 删除");
+				var oSpan = document.createElement("span");
+				oSpan.appendChild(span);
+				oSpan.className = "del";
+				var value = oTxt.value;//文本的内容赋给value
+				var oStr = document.createTextNode(value);//创建文本节点,li里面的内容
+				var oLi = document.createElement("li");//创建元素节点li
+				oLi.appendChild(oStr);//给li添加文本
+				oLi.appendChild(oSpan);
+				oList.appendChild(oLi);//给ul添加li
+				oTxt.value = "";//点击按钮时把TXT内容清空
+			}
+		}
+		oList.onclick = function(event){
+			var target = event.target
+			if(target.className== "del"){
+				this.removeChild(target.parentNode);
+			}
+			
+		}
+	</script>
+</body>
+</html>

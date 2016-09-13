@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin :0px;
+			padding :0px;
+		}
+		.big{
+			height: 300px;
+			width: 300px;
+			background-color: red;
+		}
+		.center{
+			height: 200px;
+			width: 200px;
+			background-color: green;
+		}
+		.small{
+			width: 100px;
+			height: 100px;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="big">
+		<div class="center">
+			<div class="small"></div>	
+		</div>	
+	</div>
+	<script>
+		var oBig = document.querySelector(".big");
+		var oCenter = document.querySelector(".center");
+		var oSmall = document.querySelector(".small");
+		//true代表事件在捕获阶段执行，false代表事件在冒泡阶段执行
+		//捕获指从上至下执行，冒泡是从下至上执行
+		//以下情况捕获冒泡都执行
+		// oBig.addEventListener("click",function(){
+		// 	alert("big box");
+		// },true)
+		// oCenter.addEventListener("click",function(){
+		// 	alert("center box");
+		// }.true)
+		// oSmall.addEventListener("click",function(){
+		// 	alert("small box");
+		// },true)
+		// oBig.addEventListener("click",function(){
+		// 	alert("big box");
+		// },false)
+		// oCenter.addEventListener("click",function(){
+		// 	alert("center box");
+		// }.false)
+		// oSmall.addEventListener("click",function(){
+		// 	alert("small box");
+		// },false)
+		//以下情况big small center
+		oBig.addEventListener("click",function(){
+			alert("big box");
+		})
+		oCenter.addEventListener("click",function(){
+			alert("center box");
+		})
+		oSmall.addEventListener("click",function(event){
+			alert("small box");
+			event.stopPropagation();
+		})
+
+	</script>
+</body>
+</html>

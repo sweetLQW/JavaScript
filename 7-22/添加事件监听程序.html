@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn">按钮</button>
+	<button id="btn1">按钮1</button>
+	<button id="btn2">按钮2</button>
+	<button id="btn3">按钮3</button>
+	<script>
+		var oBtn = document.querySelector("#btn");
+		var oBtn1 = document.querySelector("#btn1");
+		var oBtn2 = document.querySelector("#btn2");
+		var oRemove = document.querySelector("#btn3");
+		//此写法只会弹出第二次点击，因为赋值会把第一次覆盖掉
+		oBtn.onclick = function(){
+			alert("first click");
+		}
+		oBtn.onclick = function(){
+			alert("second click");
+		}
+		//下列代码写法会弹出两次
+		oBtn1.addEventListener("click",function(){//添加事件监听程序，
+			alert("first click");
+		},false)
+		oBtn1.addEventListener("click",function(){
+			alert("second click");
+		},false)
+		//定义一个函数
+		function fun(){
+			alert("调用函数")
+		}
+		//
+		oBtn2.addEventListener("click",fun,false);
+		oRemove.addEventListener("click",function(){
+			oBtn2.removeEventListener("click",fun,false);
+			alert("button2已移除");
+		},false)
+	</script>
+</body>
+</html>

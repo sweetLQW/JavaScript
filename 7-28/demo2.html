@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var arr = [1,5,2,7,9,3,4];
+		function search(array,data){
+			for(var i = 0;i<array.length;i++){
+				if(array[i]==data){
+					return i;
+				}
+			}
+			return -1;
+		}
+		var result = search(arr,3);
+		console.log(result)
+	</script>
+</body>
+</html>

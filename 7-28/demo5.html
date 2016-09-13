@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var student = [
+			{
+				name:"小红",
+				age:20,
+				score:99,
+			},
+			{
+				name:"小绿",
+				age:21,
+				score:80,
+			},
+			{
+				name:"小蓝",
+				age:24,
+				score:93,
+			},
+			{
+				name:"小紫",
+				age:23,
+				score:78,
+			},
+		];
+		function bubleSort(stu,member){
+			for(var i=stu.length;i>=2;i--){
+				for(var j=0;j<i-1;j++){
+					if(stu[j][member]>stu[j+1][member]){
+						var temp = stu[j];
+						stu[j] = stu[j+1];
+						stu[j+1] = temp;
+					}
+				}
+			}
+		}
+		function ageSort(stu){
+			bubleSort(stu,"age");
+		}
+		function scoreSort(stu){
+			bubleSort(stu,"score");
+		}
+		// function scoreSort(stu){
+		// 	for(var i=stu.length;i>=2;i--){
+		// 		for(var j=0;j<i-1;j++){
+		// 			if(stu[j].age>stu[j+1].age){
+		// 				var temp = stu[j];
+		// 				stu[j] = stu[j+1];
+		// 				stu[j+1] = temp;
+		// 			}
+		// 		}
+		// 	}
+		// }
+		scoreSort(student);
+		console.log(student);
+	</script>
+</body>
+</html>

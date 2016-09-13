@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button>点名</button>
+	<script>
+		var oBtn = document.querySelector("button");
+		var arr=[
+					"蝙蝠侠",
+					"绿巨人",
+					"蜘蛛侠",
+					"神奇四侠",
+					"宙斯",
+					"钢铁侠",
+					"黑寡妇"
+				];
+		var obj = {};
+		function fun(){
+			 var x = Math.floor(Math.random()*arr.length);
+			// for(var i=0;i<=newArr.length;i++){
+			// 	if(arr[x]!=newArr[i]){
+			// 		console.log(arr[x]);
+			// 		newArr.push(arr[x]);
+			// 	}else{
+			// 		fun();
+			// 	}
+			//}
+			var newArr=arr[x];
+			if(obj[newArr]==undefined){
+				obj[newArr]=1;
+				console.log(newArr);
+			}else if(getLength(obj) < newArr.length){
+				fun();
+			}	
+		}
+		function getLength(o){
+			var n=0;
+			for(var i in o){
+				n++;
+			}
+			return n;
+		}
+		oBtn.onclick = fun;
+	</script>
+</body>
+</html>

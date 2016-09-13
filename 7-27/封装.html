@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="add">+</button>
+	<button id="sub">-</button>
+	<script>
+		var count = (function(){
+			var n = 0;
+			var x = 3.1415926;
+			function addFun(){
+				n++
+				var result = (x*n).toFixed(2);
+				console.log(result)
+			}
+			function subFun(){
+				n--
+				var result = (x*n).toFixed(2);
+				console.log(result);
+			}
+			return {
+				add:addFun,
+				sub:subFun,
+			}
+		})()
+		document.querySelector("#add").onclick = count.add; 
+		document.querySelector("#sub").onclick = count.sub; 
+	</script>
+</body>
+</html>

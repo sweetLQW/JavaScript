@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.big{
+			width: 300px;
+			height: 300px;
+			background-color: red;
+		}
+		.small{
+			width: 100px;
+			height: 100px;
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="big">
+		<div class="small">
+			
+		</div>
+	</div>
+	<script src="script/jquery.js"></script>
+	<script>
+		var i=0;
+		//mouseover可被自身和子级触发，mouseenter只能被自身触发
+		//jquery写法
+		// $(".big").mouseover(function(){
+		// 	console.log(i++);
+		// })
+		//js写法1
+		var oBig = document.querySelector(".big"); 
+		oBig.onmouseover = function(){
+			console.log(i++);
+		}
+		//js写法2
+		// var oBig = document.querySelector(".big"); 
+		// oBig.addEventListener("mouseover",function(){
+		// 	console.log(i++);
+		// },false)
+
+	</script>
+</body>
+</html>

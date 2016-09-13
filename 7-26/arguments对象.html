@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function arg(){
+			//我的
+			if(arguments.length==1){
+				var result = arguments[0]*arguments[0];
+			}else{
+				var result = arguments[0]*arguments[1];
+			}
+			console.log(result);
+			//老师的
+			// if(arguments.length==1){
+			// 	return arguments[0]*arguments[0];
+			// }else{
+			// 	return arguments[0]*arguments[1];
+			// }	
+		}
+		arg(10,5);
+		//console.log(arg(10,5));
+	</script>
+</body>
+</html>
