@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>包装对象复习</title>
+</head>
+<body>
+	<script>
+		var number = 100;
+		number.name = "liu";//当调用原始类型时，自动传承包装对象这是可以调用方法，但是执行结束后，则又会变成原始类型数据，在输出定义的方法则没有定义
+		console.log(number.name);//undefined
+		//包装对象，只有三中类型可以转换成包装对象。Number(),String(),Boolean()
+		var number = number.toString();
+		var test = null.toString();//报错。因为null不能转成包装对象
+		console.log(typeof number);//string 
+	</script>
+</body>
+</html>
