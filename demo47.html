@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>找同级其他元素</title>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li class="list">2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<script>
+		var oLi = document.querySelector(".list");
+		function siblings(ele){
+			var arr = [];
+			var sibs = ele.parentNode.children;
+			for(var i=0;i<sibs.length;i++){
+				if(sibs[i] != ele){
+					arr.push(sibs[i]);
+				}
+			}
+			return arr
+		}
+		var arr1 = siblings(oLi);
+		console.log(arr1);
+	</script>
+</body>
+</html>

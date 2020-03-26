@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取和设置属性</title>
+</head>
+<body>
+	<input type="text" class="txt1">+
+	<input type="text" class="txt2">=
+	<input type="text" class="txt3">
+	<button>计算</button>
+	<script>
+		var txt1 = document.querySelector(".txt1");
+		var txt2 = document.querySelector(".txt2");
+		var txt3 = document.querySelector(".txt3");
+		var btn = document.querySelector("button");
+		btn.onclick = function(){
+			txt3.value = Number(txt1.value) + Number(txt2.value);
+		}
+	</script>
+</body>
+</html>

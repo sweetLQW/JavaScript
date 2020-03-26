@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>找子级父级</title>
+</head>
+<body>
+	<ul class="listNum">
+		<li>1</li>
+		<li class="list">2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<script>
+		var list = document.querySelector(".list");
+		var parent = list.parentNode;
+		var oUl = document.querySelector(".listNum");
+		var oli = oUl.children;
+		console.log(oli);
+	</script>
+</body>
+</html>

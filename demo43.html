@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>通过选择器获取节点</title>
+</head>
+<body>
+	<input type="button" id="btn">
+	<ul>
+		<li class="list">1</li>
+		<li class="list">2</li>
+		<li class="list">3</li>
+		<li class="list">4</li>
+	</ul>
+	<script>
+		var btn = document.querySelector("#btn");//返回id=btn的值
+		var list = document.querySelector(".list");//返回第一个class的值
+		var listAll = document.querySelectorAll(".list");//返回多个oclass=list的值
+		console.log(listAll)
+	</script>
+</body>
+</html>

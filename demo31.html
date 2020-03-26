@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Object.defineProperty()</title>
+</head>
+<body>
+    <script>
+        // Object.defineProperty(obj, prop, descriptor) 
+        // obj 要在其上定义属性的对象
+        // prop 要定义或修改的属性名称
+        // descriptor 要被定义或修改的属性描述符,对象里目前存在的属性描述符有两种主要形式：数据描述符和存取描述符。数据描述符是一个具有值的属性，该值可能是可写的，也可能不是可写的。存取描述符是由getter-setter函数对描述的属性。描述符必须是这两种形式之一；不能同时是两者。
+        // 数据描述符与存取描述符的共同可选键值：configurable(默认false),enumerable(默认false)
+            // configurable：当且仅当该属性的 configurable 为 true 时，该属性描述符才能够被改变，同时该属性也能从对应的对象上被删除。否则描述符不可被改变（除了单向改变 writable 为 false）。
+            // enumerable：当且仅当该属性的enumerable为true时，该属性才能够出现在对象的枚举属性中。
+        // 数据描述符具有以下可选键值：value(默认undefined),writable(默认false)
+            // value：该属性对应的值。可以是任何有效的 JavaScript 值（数值，对象，函数等）。
+            // writable：当且仅当该属性的writable为true时，value才能被赋值运算符改变。
+        // 存取描述符具有以下可选键值：get(默认undefined),set(默认undefined)
+            // get：一个给属性提供 getter 的方法，当访问该属性时，该方法会被执行，方法执行时没有参数传入，但是会传入this对象（由于继承关系，这里的this并不一定是定义该属性的对象）。
+            // set：一个给属性提供 setter 的方法，当属性值修改时，触发执行该方法。该方法将接受唯一参数，即该属性新的参数值。
+
+        let person = {}
+        // 此时相当于Object.defineProperty(person, 'name', {value:'lily',configurable:true,enumerable:true,writable:true})
+        person.name = 'first lily';
+        console.log('name第一次赋值', person.name);
+        // 修改对象属性
+        Object.defineProperty(person, 'name', {
+            value: 'second lily',
+            configurable: false,
+            enumerable: false,
+            writable: false
+        })
+        console.log('name第二次赋值', person.name);
+        person.name = 'third lily';
+        console.log('name第三次赋值', person.name);
+        console.log('name属性不能被枚举', Object.keys(person));
+        // 不能再进行以下修改 会报错
+        // Object.defineProperty(person, 'name', {
+        //     value: 'lily',
+        //     configurable: false,
+        //     enumerable: false,
+        //     writable: false
+        // })
+
+        // 给对象添加新属性
+        let age;
+        Object.defineProperty(person, 'age', {
+            get: function () {
+                console.log('获取此属性');
+                return age + '√';
+            },
+            set: function (val) {
+                console.log('设置此属性', val);
+                age = val;
+            }
+        })
+
+        person.age = 12;
+        console.log(person.age);
+        console.log(person);
+    </script>
+</body>
+</html>

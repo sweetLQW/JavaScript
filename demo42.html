@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取index</title>
+</head>
+<body>
+	<ul class="list">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+	<script>
+		var oLi = document.querySelectorAll("li");
+		for(var i=0;i<oLi.length;i++){
+			oLi[i].onclick = function(){
+				var ind = index(this);
+				alert(ind)
+			}
+		}
+		function index(elem){
+			var siblings = elem.parentNode.children;
+			for(var i=0;i<siblings.length;i++){
+				if(siblings[i] == elem){
+					return i;
+					console.log(i)
+				}
+			}
+		}
+	</script>
+</body>
+</html>

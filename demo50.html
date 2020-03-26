@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>aadclass</title>
+</head>
+<body>
+	<div></div>
+	<script>
+		var box = document.querySelector("div");
+		function addClass(elem,str){
+			if(elem.className){
+				elem.className = elem.className + " " + str;
+				
+			}else{
+				elem.className = str;	
+			}
+		}
+		addClass(box,"active");
+		console.log(box.className);
+	</script>
+</body>
+</html>

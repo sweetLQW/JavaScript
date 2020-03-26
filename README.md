@@ -29,5 +29,25 @@
 ##### demo28 Document对象compatMode方法
 ##### demo29 Document对象readyState方法
 ##### demo30 获取url参数
-
-
+##### demo31 Object.defineProperty()
+##### demo32 格式化日期
+##### demo33 实现vue双向绑定
+##### demo34 图片轮播-图片切换立体旋转
+##### demo35 图片轮播-百叶窗风格图片切换
+##### demo36 图片轮播-图片左右可移动点击图片可放大
+##### demo37 rem布局
+##### demo38 删除节点
+##### demo39 找子级父级
+##### demo40 添加节点
+##### demo41 获取和设置属性
+##### demo42 获取index
+##### demo43 通过选择器获取节点
+##### demo44 Dom-class获取节点
+##### demo45 Dom-id获取节点
+##### demo46 window对象事件
+##### demo47 找同级其他元素
+##### demo48 获取索引-2
+##### demo49 获取索引-3不推荐使用
+##### demo50 aadclass
+##### demo51 点击切换图片
+##### demo52 removeClass

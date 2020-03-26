@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>点击切换图片</title>
+	<style type="text/css">
+		*{
+			margin :0;
+			padding :0;
+		}
+		li{
+			float :left;
+			width: 20px;
+			list-style: none;
+			text-align: center;
+			border: 1px solid red;
+		}
+		img{
+			width: 300px;
+			height: 300px;
+		}
+		.active{
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<img src="images/0.jpg" alt="">
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<script>
+		var img = document.querySelector("img")
+		var oLi = document.querySelectorAll("li");
+		for(var i=0;i<oLi.length;i++){
+			oLi[i].onclick = (function(x){
+				return function(){
+					var imgArr = ["images/0.jpg","images/1.jpg","images/2.jpg","images/3.jpg","images/4.jpg"];
+					img.src = imgArr[x];
+					addClass(this,"active");
+					var arr1 = siblings(this);
+						for(var n=0;n<arr1.length;n++){
+							removeClass(arr1[n],"active")
+						}
+					}
+				//添加一个class
+				function addClass(elem,str){
+					if(elem.className){
+							elem.className = elem.className + " " + str;
+				
+					}else{
+							elem.className = str;	
+					}
+				}
+				//找到同级其他元素
+				function siblings(ele){
+					var arr = [];
+					var sibs = ele.parentNode.children;
+						for(var i=0;i<sibs.length;i++){
+							if(sibs[i] != ele){
+							arr.push(sibs[i]);
+							}
+						}
+					return arr
+				}
+				console.log(arr1);
+				//移除其他元素
+				function removeClass(ele,str){
+					var arr = ele.className.split(" ");
+					var arr1 = [];
+						for(var i=0;i<arr.length;i++){
+							if(arr[i]!=str){
+							arr1.push(arr[i]);	
+							}	
+						}
+				var str = arr1.join(" ");
+				ele.className = str;
+				}
+			})(i);
+		}
+	</script>
+</body>
+</html>

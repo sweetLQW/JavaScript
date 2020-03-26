@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取索引-2</title>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul>
+	<script>
+		var oLi = document.querySelectorAll("li");
+		for(var i=0;i<oLi.length;i++){
+			oLi[i].onclick = (function(x){
+				return function(){
+					alert(x);
+				}
+			})(i);
+		}
+		
+	</script>
+</body>
+</html>
