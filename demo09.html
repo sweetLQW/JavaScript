@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>包装对象复习</title>
+	<title>包装对象</title>
 </head>
 <body>
 	<script>
+		var num = new Number(100);//new + 构造函数创建一个对象 num是对象类型 所以可以用对象.方法
+		num.name = "hh";
+		console.log(num.name);
+
 		var number = 100;
 		number.name = "liu";//当调用原始类型时，自动传承包装对象这是可以调用方法，但是执行结束后，则又会变成原始类型数据，在输出定义的方法则没有定义
 		console.log(number.name);//undefined

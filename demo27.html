@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>克隆</title>
+</head>
+<body>
+	<script>
+		var obj = {
+			"name":"lqw",
+			"age":21,
+			"sex":"female",
+			"course":["aaaaaa","kkkkk"],
+			"data":{
+				"8-29":"clone",
+				"8-27":"training"
+			}
+		}
+		//浅度克隆，适用于原始类型，引用类型改变时会出问题
+		// function cloneObj(option){
+		// 	var newOption = {};
+		// 	for(var key in option){
+		// 		newOption[key] = option[key];
+		// 	}
+		// 	return newOption;
+		// }
+		//深度克隆
+		function cloneObj(option){
+			if(option instanceof Array){
+				var newOption = [];
+			}else if(option instanceof Object){
+				var newOption = {};
+			}
+			for(var key in option){
+				if(typeof(option[key]) == "object"){
+					newOption[key] = cloneObj(option[key]);
+				}else{
+					newOption[key] = option[key];
+				}
+				
+			}
+			return newOption;
+		}
+		var obj1 = cloneObj(obj);
+		obj1.name = "lxq";
+		obj1.course[0] = "wwwww";
+		obj1.data["8-29"] = "deep-Clone"
+		console.log(obj);
+		console.log(obj1);
+	</script>
+</body>
+</html>

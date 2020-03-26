@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document对象readyState方法</title>
+</head>
+<body>
+	<h1>HTML5 - document.readyState，描述了文档加载状态</h1>
+	<p>loading - 表示文档还在加载中，即处于“正在加载”状态</p>
+	<p>interactive - 文档已经结束了“正在加载”状态，DOM元素可以被访问。但是像图像，样式表和框架等资源依然还在加载。</p>
+	<p>complete - 表示页面所有内容都已被完全加载</p>
+    <script>
+		console.log(document.readyState);
+
+        document.onreadystatechange = function () {
+			switch (document.readyState) {
+				case "loading":
+					console.log('文档loading');
+					break;
+				case "interactive":
+					console.log('文档interactive');
+					break;
+				case "complete":
+					console.log('文档complete');
+					break;
+			}
+		}
+    </script>
+</body>
+</html>

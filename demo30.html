@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取url参数</title>
+</head>
+<body>
+    <script>
+        console.log(getQueryStringArgs());
+        
+        function getQueryStringArgs() {
+            var qs = (location.search.length > 0 ? location.search.substring(1) : ''),
+                // 保存数据的对象
+                args = {},
+                // 取得每一项参数
+                items = qs.length > 0 ? qs.split('&') : [],
+                // for循环中使用的变量
+                item = null, 
+                name = null, 
+                value = null, 
+                i = 0, 
+                len = items.length;
+                for (i; i < len; i++) {
+                    item = items[i].split('=');
+                    name = decodeURIComponent(item[0]);
+                    value = decodeURIComponent(item[1]);
+                    if (name.length) {
+                        args[name] = value;
+                    }
+                }
+            return args;
+        }
+    </script>
+</body>
+</html>

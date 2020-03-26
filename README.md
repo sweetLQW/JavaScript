@@ -1,41 +1,33 @@
 # javascript
-    ##7-22
-        ###demo01 事件委托
-        ###demo02 冒泡事件
-        ###demo03 数据类型检测
-        ###demo04 数据类型
-        ###demo05 添加事件监听程序
-        ###demo06 jquery的事件委托
-        ###demo07 mouseenter和mouseover区别
-        ###demo08 test
-    ##7-25
-        ###demo01 点名
-    ##7-26
-        ###demo01 包装对象
-        ###demo02 检测类型
-        ###demo03 阶乘
-        ###demo04 arguments对象
-    ##7-27
-        ###demo01 回调函数
-        ###demo02 封装
-        ###demo03 数组其他方法
-        ###demo04 数组去重复
-        ###demo05 数组版点名
-        ###demo06 homework互换位
-    ##7-28
-        ##demo1  冒泡排序
-        ##demo2  顺序排序
-        ##demo3 找数组中最大值
-        ##demo4 二分查找
-        ##demo5 作业1
-        ##demo6 作业界面整合
-        ##demo6.js 作业界面整合
-    ##7-29
-        ##demo1 构造函数和原型对象
-    ##9-16
-        ###demo01 ES6变量赋值
-        ###demo02 ES6常量赋值
-        ###demo03 ES6解构赋值
-    ## 9-19 
-        ### demo01 包装对象复习
+##### demo01 事件委托
+##### demo02 冒泡事件
+##### demo03 数据类型检测
+##### demo04 数据类型
+##### demo05 添加事件监听程序
+##### demo06 jquery的事件委托
+##### demo07 mouseenter和mouseover区别
+##### demo08 随机点名
+##### demo09 包装对象
+##### demo10 检测类型
+##### demo11 阶乘
+##### demo12 arguments对象
+##### demo13 回调函数
+##### demo14 封装
+##### demo15 数组其他方法
+##### demo16 数组去重复
+##### demo17 数组版点名
+##### demo18 homework互换位
+##### demo19 冒泡排序
+##### demo20 顺序排序
+##### demo21 找数组中最大值
+##### demo22 二分查找
+##### demo23 构造函数和原型对象
+##### demo24 ES6变量赋值
+##### demo25 ES6常量赋值
+##### demo26 ES6解构赋值
+##### demo27 克隆
+##### demo28 Document对象compatMode方法
+##### demo29 Document对象readyState方法
+##### demo30 获取url参数
+
 
