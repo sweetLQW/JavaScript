@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类的创建</title>
+</head>
+<body>
+    <p>new + 构造函数实例化对象</p>
+    <script>
+        // 生成一个Father类，实例化对象后有方法和属性
+        function Father (name = 'no father') {
+            this.name = name;
+            // 实例方法
+            this.sayName = function () {
+                console.log('Father: My name is ' + this.name);
+            }
+        }
+        // 原型方法
+        Father.prototype.sayIdentity = function () {
+            console.log("Father: " + this.name + "'s identity is a father.");
+        }
+        var father = new Father('Tom');
+        console.log(father.name);
+        father.sayName();
+        father.sayIdentity();
+    </script>
+</body>
+</html>

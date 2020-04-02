@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类的继承 - 构造继承</title>
+</head>
+<body>
+    <p>类的继承 - 构造继承</p>
+    <p>优点</p>
+    <ul>
+        <li>可以给父类传参数</li>
+        <li>可以实现多继承</li>
+    </ul>
+    <p>缺点：</p>
+    <ul>
+        <li>实例（son）不是父类的实例</li>
+        <li>不继承父类原型上的属性和方法</li>
+        <li>无法实现函数复用，每个子类都有父类实例函数的副本，影响性能</li>
+    </ul>
+    <script>
+        // 创建一个Father类
+        function Father (name = 'no father') {
+            this.name = name;
+            this.sayIdentity = function () {
+                console.log("Father: " + this.name + "'s identity is a father.");
+            }
+        }
+        Father.prototype.sayName = function () {
+            console.log('My name is ' + this.name);
+        }
+        
+        // 创建一个Son类
+        function Son (name = 'no son') {
+            // Son继承Father，用来继承实例属性和方法（不能继承原型上的属性和方法），可以传参
+            Father.call(this, name);
+            this.sayIdentity = function () {
+                console.log("Son: " + this.name + "'s identity is a son.");
+            }
+        }
+
+        // 创建实例对象
+        var son = new Son('Tom');
+        console.log(son);
+        console.log(son instanceof Father); // false
+        console.log(son instanceof Son); // true
+        console.log(son.name);
+        son.sayIdentity();
+        son.sayName(); // son.sayName is not a function
+    </script>
+</body>
+</html>

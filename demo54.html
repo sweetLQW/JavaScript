@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟jquery的链式操作</title>
+</head>
+<body>
+    <div id="container">hello world</div>
+    <script>
+        function Elem(idName) {
+            this.elem = document.getElementById(idName);
+        }
+        Elem.prototype.html = function (val) {
+            let elem = this.elem;
+            if (val) {
+                elem.innerHTML = val;
+                return this; // 可以链式操作
+            } else {
+                return elem.innerHTML;
+            }
+        }
+        Elem.prototype.on = function (type, callback) {
+            let elem = this.elem;
+            if (type) {
+                elem.addEventListener(type, callback);
+                return this;
+            }
+        }
+        let div = new Elem('container');
+        console.log(div.elem); // 获取当前元素
+        console.log(div.html()); // 获取当前元素内容
+        // div.html('你好');
+        // div.on('click', function () {
+        //  alert('你好');
+        // })
+        // 链式操作
+        div.html('你好').on('click', function () {
+            alert('你好');
+        })
+    </script>
+</body>
+</html>

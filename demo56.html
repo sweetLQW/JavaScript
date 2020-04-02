@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类的继承 - 原型继承</title>
+</head>
+<body>
+    <p>类的继承 - 原型继承</p>
+    <p>优点</p>
+    <ul>
+        <li>父类新增属性和方法（不管是在原型上或者构造函数内新增），子类都能访问到</li>
+        <li>实现简单，易操作</li>
+    </ul>
+    <p>缺点：</p>
+    <ul>
+        <li>子类实例（son）无法向父类构造函数传参</li>
+        <li>无法实现多继承</li>
+        <li>所有实例都会共享父类原型对象上的的属性和方法，如果一个实例修改父类原型属性，所有实例都会被修改</li>
+        <li>如果想在子类的原型上添加方法和属性，需要在子类继承父类（ Son.prototype = new Father()）之后执行</li>
+    </ul>
+    <script>
+        // 创建一个Father类
+        function Father (name = 'no father') {
+            this.name = name;
+            this.sayIdentity = function () {
+                console.log("Father: " + this.name + "'s identity is a father.");
+            }
+        }
+        Father.prototype.sayName = function () {
+            console.log('My name is ' + this.name);
+        }
+        
+        // 创建一个Son类
+        function Son (name = 'no son') {
+            this.name = name;
+            this.sayIdentity = function () {
+                console.log("Son: " + this.name + "'s identity is a son.");
+            }
+        }
+        
+        // Son继承Father（子类的原型 = 父类的实例）
+        Son.prototype = new Father();
+
+        // 创建实例对象
+        var son = new Son('Tom');
+        console.log(son instanceof Father); // true
+        console.log(son instanceof Son); // true
+        console.log(son.name);
+        son.sayIdentity();
+        son.sayName();
+
+    </script>
+</body>
+</html>
