@@ -58,3 +58,12 @@
 ##### demo57 类的继承 - 构造继承
 ##### demo58 类的继承 - 组合继承
 ##### demo59 类的继承 - 寄生组合继承
+##### demo60 XMLHttpRequest
+##### demo61 解决回调地狱 - Promise
+##### demo62 解决回调地狱 - generator
+##### demo63 解决回调地狱 - async/await
+##### demo64 Thunk函数
+##### demo65 Set
+##### demo66 Map
+##### demo67 Iterator遍历器(处理所有不同的数据结构的机制)，可以使用for of遍历
+##### demo68 ES6模块化（module）

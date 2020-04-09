@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thunk函数</title>
+</head>
+<body>
+    <p>传值调用：进入函数体之前，计划好传入参数的值，再进入函数体</p>
+    <p>传名调用：进入函数体之后用到参数的时候再求值</p>
+    <p>JavaScript 语言是传值调用，它的 Thunk 函数含义有所不同。在 JavaScript 语言中，Thunk 函数替换的不是表达式，而是多参数函数，将其替换成一个只接受回调函数作为参数的单参数函数。</p>
+    <p>一个多参数函数，两个参数分别为文件名和回调函数。经过转换器处理，它变成了一个单参数函数，只接受回调函数作为参数。这个单参数版本，就叫做 Thunk 函数。</p>
+    <script>
+        function cb(param) {
+            console.log('我是回调函数', param);
+        }
+
+        // 普通写法
+        // function fun(param, callback) {
+        //     callback(param);
+        // }
+        // fun(123, cb);
+
+        // Thunk函数写法
+        function thunk(param) {
+            return function (callback) {
+                return callback(param);
+            }
+        }
+        var returnFun = thunk(123);
+        returnFun(cb);
+
+    </script>
+</body>
+</html>

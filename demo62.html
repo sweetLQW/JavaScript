@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解决回调地狱 - generator</title>
+</head>
+<body>
+    <p>Generator 函数是协程在 ES6 的实现，最大特点就是可以交出函数的执行权（即暂停执行）。</p>
+    <p>Generator 函数，它不同于普通函数，是可以暂停执行的，所以函数名之前要加星号，以示区别。整个 Generator 函数就是一个封装的异步任务，或者说是异步任务的容器。异步操作需要暂停的地方，都用 yield 语句注明。</p>
+    <p>调用 Generator 函数，返回一个遍历器对象，代表 Generator 函数的内部指针</p>
+    <br>
+    <p>遍历器对象的next方法的运行逻辑如下。</p>
+    <ul>
+        <li>遇到yield表达式，就暂停执行后面的操作，并将紧跟在yield后面的那个表达式的值，作为返回的对象的value属性值。</li>
+        <li>下一次调用next方法时，再继续往下执行，直到遇到下一个yield表达式。</li>
+        <li>如果没有再遇到新的yield表达式，就一直运行到函数结束，直到return语句为止，并将return语句后面的表达式的值，作为返回的对象的value属性值。</li>
+        <li>如果该函数没有return语句，则返回的对象的value属性值为undefined。</li>
+        <li>需要注意的是，yield表达式后面的表达式，只有当调用next方法、内部指针指向该语句时才会执行，因此等于为 JavaScript 提供了手动的“惰性求值”（Lazy Evaluation）的语法功能。</li>
+    </ul>
+    <script>
+        // 1. 基本应用
+        // 1.1 
+        // function* gen(x){
+        //     yield x + 2;
+        // }
+
+        // var g = gen(1);
+        // console.log(g.next()); // { value: 3, done: false }
+        // console.log(g.next()); // { value: undefined, done: true }
+        // 上面代码中，调用 Generator 函数，会返回一个内部指针（即遍历器 ）g 。
+        // 这是 Generator 函数不同于普通函数的另一个地方，即执行它不会返回结果，返回的是指针对象。
+        // 调用指针 g 的 next 方法，会移动内部指针（即执行异步任务的第一段），指向第一个遇到的 yield 语句，上例是执行到 x + 2 为止。
+        // 换言之，next 方法的作用是分阶段执行 Generator 函数。
+        // 每次调用 next 方法，会返回一个对象，表示当前阶段的信息（ value 属性和 done 属性）。
+        // value 属性是 yield 语句后面表达式的值，表示当前阶段的值；
+        // done 属性是一个布尔值，表示 Generator 函数是否执行完毕，即是否还有下一个阶段。
+        // 1.2
+        // function* gen() { 
+        //     yield 1;
+        //     yield 2;
+        //     yield 3;
+        //     return 'ending';
+        // }
+        // var g = gen();
+        // console.log(g.next()); // {value: 1, done: false}
+        // console.log(g.next()); // {value: 2, done: false}
+        // console.log(g.next()); // {value: 3, done: false}
+        // console.log(g.next()); // {value: "ending", done: true}
+        // console.log(g.next()); // {value: undefined, done: true}
+        // console.log(g.next()); // {value: undefined, done: true}
+        // 必须调用遍历器对象的next方法，使得指针移向下一个状态。
+        // 也就是说，每次调用next方法，内部指针就从函数头部或上一次停下来的地方开始执行，直到遇到下一个yield表达式（或return语句）为止。
+
+
+
+        // 2. next传值
+        // function* gen(x){
+        //     var y = yield x + 2;
+        //     return y;
+        // }
+
+        // var g = gen(1);
+        // console.log(g.next()); // { value: 3, done: false }
+        // console.log(g.next(2)); // { value: 2, done: true }
+        // 上面代码中，第一个 next 方法的 value 属性，返回表达式 x + 2 的值（3）。
+        // 第二个 next 方法带有参数2，这个参数可以传入 Generator 函数，作为上个阶段异步任务的返回结果，被函数体内的变量 y 接收。
+        // 因此，这一步的 value 属性，返回的就是2（变量 y 的值）。
+
+        // 3. 部署错误处理代码
+        // function* gen(x){
+        //     try {
+        //         yield x + 2;
+        //     } catch (e){ 
+        //         console.log(e);
+        //     }
+        // }
+
+        // var g = gen(1);
+        // g.next();
+        // g.throw('出错了'); // 出错了
+        // 上面代码的最后一行，Generator 函数体外，使用指针对象的 throw 方法抛出的错误，可以被函数体内的 try ... catch 代码块捕获。
+        // 这意味着，出错的代码与处理错误的代码，实现了时间和空间上的分离，这对于异步编程无疑是很重要的。
+
+        // 4. 异步应用
+        var f1 = function() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log('f1');
+                    resolve('我是f1的返回');
+                }, 1000)
+            })
+        }
+
+        var f2 = function() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log('f2');
+                    resolve('我是f2的返回');
+                }, 1000)
+            })
+        }
+
+        var f3 = function() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log('f3');
+                    resolve('我是f3的返回');
+                }, 1000)
+            })
+        }
+
+        function* asyncFun(res) {
+            const f1Result = yield f1();
+            console.log(f1Result);
+            const f2Result = yield f2();
+            console.log(f2Result);
+            const f3Result = yield f3();
+            console.log(f3Result);
+        }
+        
+        var g = asyncFun();
+        g.next().value.then((res) => g.next(res).value)
+                      .then((res) => g.next(res).value)
+                      .then((res) => g.next(res).value)
+    </script>
+</body>
+</html>

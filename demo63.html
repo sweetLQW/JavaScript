@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解决回调地狱 - async/await</title>
+</head>
+<body>
+    <p>async/await的目的是简化使用多个 promise 时的同步行为，并对一组 Promises执行某些操作。正如Promises类似于结构化回调，async/await更像结合了generators和 promises。</p>
+    <script>
+        var f1 = function() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log('f1');
+                    resolve('我是来自f1的参数');
+                }, 1000)
+            })
+        }
+
+        var f2 = function() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log('f2');
+                    resolve('我是来自f2的参数');
+                }, 1000)
+            })
+        }
+
+        var f3 = function() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log('f3');
+                    resolve('我是来自f3的参数');
+                }, 1000)
+            })
+        }
+
+        async function asyncFun() {
+            await f1();
+            await f2();
+            await f3();
+        }
+        asyncFun();
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest</title>
+</head>
+<body>
+    <script>
+        var str = '你好，我是请求参数';
+        var xhr = new XMLHttpRequest();
+        // 第三个参数默认true，是否异步
+        xhr.open('GET', 'http://127.0.0.1:3000/hello');
+        // 设置超过10ms触发ontimeout，请求会被canceled
+        // xhr.timeout = 10;
+        // xhr.ontimeout = function(e) {
+        //     console.log('timeout');
+        // }
+        // 设置header
+        // setRequestHeader(name, value);
+        xhr.onload = function () {
+            console.log(JSON.parse(xhr.response));
+            console.log(JSON.parse(xhr.responseText));
+        }
+        // 下面的方法与onload相同，请求成功后执行
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.readyState === 4 && xhr.status === 200) {
+        //         console.log(JSON.parse(xhr.response));
+        //         console.log(JSON.parse(xhr.responseText));
+        //     }
+        // }
+        // post方法可以使用xhr.send(data)
+        xhr.send();
+       
+    </script>
+</body>
+</html>
