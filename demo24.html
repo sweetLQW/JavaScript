@@ -5,32 +5,42 @@
 	<title>ES6变量赋值</title>
 </head>
 <body>
-	<ul>
+	<ul class="">
 		<li class="list">hh</li>
 		<li class="list">ee</li>
 		<li class="list">ww</li>
 	</ul>
 	<script>
-		// "use strict"//让以下代码运行在严格模式下，我们普通写的js都是普通模式下的（课外知识）
+		// let一般用来定义变量，可以修改
+		// const一般用来定义常量，const定义的变量不可修改
+		let a = 1;
+		const b = 2;
+		a = 5;
+		b = 5; // Uncaught TypeError: Assignment to constant variable.
+
+		// let,const可以创建一个作用域，作用域以外不能访问
 		// if(true){
-		// 	let i = 0;
-		// 	//let可以创建一个作用域，作用域以外不能访问
+		// 	let a = 1;
+		// 	const b = 2
 		// }
-		// console.log(i);
-		// for(let i = 0;i<10;i++){
-		// }
-		// console.log(i);
-		// var li = document.querySelectorAll(".list");
-		// for(let i = 0;i<li.length;i++){
-		// 	//以前写法
-		// 	// li[i].onclick = (function(i){
-		// 	// 	return function(){
-		// 	// 		alert(i);
-		// 	// 	}
-		// 	// })(i)
-		// 	//es6写法
-		// 	li[i].onclick = function(){
-		// 		alert(i);
+		// console.log(a, b); // not defined
+
+		// 点击li输出index
+		// const li = document.querySelectorAll(".list");
+		// // 以前写法
+		// // for(var i = 0; i < li.length; i++) {
+		// // 	li[i].onclick = (function(i){
+		// // 		return function(){
+		// // 			console.log(i);
+		// // 			li[i].onclick = null; // 防止内存泄漏
+		// // 		}
+		// // 	})(i);
+		// // }
+		// //es6写法
+		// for(let i = 0; i < li.length; i++){
+		// 	li[i].onclick = () => {
+		// 		console.log(i);
+		// 		li[i].onclick = null; // 防止内存泄漏
 		// 	}
 		// }
 

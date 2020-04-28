@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设计模式之观察者模式</title>
+</head>
+<body>
+    <script>
+        var observer = {
+            subscribeList: {},
+            subscribe: function(type, fn) {
+                if (!type || typeof fn !== 'function') { return; }
+                !this.subscribeList[type] && (this.subscribeList[type] = []);
+                this.subscribeList[type].push(fn);
+            },
+            publish: function(type) {
+                var typeList = this.subscribeList[type];
+                if (!type || !typeList || !typeList.length) { return; }
+                var args = Array.prototype.slice.apply(arguments);
+                args.splice(0, 1);
+                typeList.forEach(function(element) {
+                    element.apply(null, args);
+                });
+            },
+            unSubscribe: function(type, fn) {
+                var typeList = this.subscribeList[type];
+                // 如果没有此类型的订阅事件或者订阅事件长度为0，则直接返回
+                if (!type || typeof fn !== 'function' || !typeList || !typeList.length) { return; }
+                if (!fn) {
+                    typeList.length = 0;
+                    return;
+                } else {
+                    typeList.forEach((element, index) => {
+                        if(element === fn) {
+                            typeList.splice(index, 1);
+                        }
+                    })
+                }
+            }
+        };
+
+        // lily订阅消息 - milk
+        observer.subscribe('milk', fn1 = function(name) {
+            console.log('lily接收' + name);
+        })
+
+        // Alan订阅消息 - milk
+        observer.subscribe('milk', fn2 = function(name) {
+            console.log('Alan接收' + name);
+        })
+
+        // cindy订阅消息 - milk
+        observer.subscribe('milk', fn3 = function(name) {
+            console.log('cindy接收' + name);
+        })
+
+        // cindy订阅消息 - cake
+        observer.subscribe('cake', fn4 = function(name) {
+            console.log('cindy接收' + name);
+        })
+
+        observer.publish('milk', '牛奶');
+        observer.publish('cake', '蛋糕');
+
+        // 取消lily订阅的milk消息
+        observer.unSubscribe('milk', fn1);
+        console.log('【公告】lily取消订购牛奶');
+
+        observer.publish('milk', '牛奶');
+
+    </script>
+</body>
+</html>

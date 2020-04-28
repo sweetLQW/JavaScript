@@ -8,134 +8,118 @@
 	<button>点击</button>
 	<script src="script/jquery.js"></script>
 	<script>
-		//es5构造函数
-			// var Cat = function(name,age){
-			// 	this.name = name;
-			// 	this.age = age;
-			// 	this.sayName  = function(){
-			// 		alert(this.name);
-			// 	}
-			// }
-			// var cat = new Cat("xiaoming",22);
-			// cat.sayName();
-			//原型链（继承）
-				// var Cat = function(name,age){
-				// 	this.name = name;
-				// 	this.age = age;
-				// 	this.sayName  = function(){
-				// 		alert(this.name);
-				// 	}
-				// }
-				// var Animals = function(name){
-				// 	this.name = name;
-				// }
-				// Animals.prototype = new Cat();
-				// var animals = new Animals("hhhhh");
-				// animals.sayName();
-		//es6构造函数
-			// class Cat{
-			// 	constructor(name,age){
-			// 		this.name = name;
-			// 		this.age = age;
-			// 	}
-			// 	sayName(){
-			// 		alert(this.name);
-			// 	}
-			// }
-			// var cat = new Cat("xiaoming",21);
-			// cat.sayName();
-			//继承
-				class Cat{
-					constructor(name){
-						this.name = name;
-					}
-					sayName(){
-						alert(this.name);
-					}
-				}
-				class Animals extends Cat{
-					constructor(name){
-						super(name);
-					}
-				}
-				const animals = new Animals("xiaoming");
-				animals.sayName();
-		//箭头函数点击事件
-		// $("button").click(event=>{
+		// es5构造函数继承
+		// var Cat = function(name,age){
+		// 	this.name = name;
+		// 	this.age = age;
+		// 	this.sayName  = function(){
+		// 		alert(this.name);
+		// 	}
+		// }
+		// var cat = new Cat("xiaoming",22);
+		// cat.sayName();
+
+		// 原型链（继承）
+		// var Cat = function(name,age){
+		// 	this.name = name;
+		// 	this.age = age;
+		// 	this.sayName  = function(){
+		// 		alert(this.name);
+		// 	}
+		// }
+		// var Animals = function(name){
+		// 	this.name = name;
+		// }
+		// Animals.prototype = new Cat();
+		// var animals = new Animals("hhhhh");
+		// animals.sayName();
+
+		// es6构造函数
+		// class Cat{
+		// 	constructor(name, age){
+		// 		this.name = name;
+		// 		this.age = age;
+		// 	}
+		// 	sayName() {
+		// 		alert(this.name);
+		// 	}
+		// }
+		// var cat = new Cat("xiaoming", 21);
+		// cat.sayName();
+
+		// ES6继承
+		// class Cat{
+		// 	constructor(name){
+		// 		this.name = name;
+		// 	}
+		// 	sayName(){
+		// 		alert(this.name);
+		// 	}
+		// }
+		// class Animals extends Cat {
+		// 	constructor(name){
+		// 		super(name);
+		// 	}
+		// }
+		// const animals = new Animals("xiaoming");
+		// animals.sayName();
+
+		// 箭头函数点击事件
+		// $("button").click(event => {
 		// 	alert("HHH");
 		// })
-		//数组解构赋值
-			// let [num1,num2] = [100,80];
-			//以前调换两个值的办法
-			// var temp = num1;
-			// num1 = num2;
-			// num2 = temp;
-			//用解构赋值方法便于调换两个值
-			// [num1,num2] = [num2,num1];
-			// console.log(num1);
-			// console.log(num2);
-		//对象的解构赋值
-			// let {name,age} = {name:"xiaoming",age:22};
-			// console.log(name);
-			// console.log(age);
-			//数组按顺序赋值
-				// function fun(){
-				// 	let arr = [1,2];
-				// 	return arr;
-				// }
-				// let [name1,name2] = fun();
-				// console.log(name1);
-				// console.log(name2);
-			//对象赋值会按照属性名找属性值
-				//例1
-					// function fun(){
-					// 	let obj = {
-					// 		name:"xx",
-					// 		age:21
-					// 	}
-					// 	return obj;
-					// }
-					// let {age,name} = fun();
-					// console.log(age);
-					// console.log(name);
-				//例2
-					// function fun({name,age}){
-					// 	console.log(age);
-					// 	console.log(name);
-					// }
-					// let obj = {
-					// 	name:"xx",
-					// 	age:21
-					// }
-					// fun(obj);
-			//es5函数的默认值,如果没有实参传进来，a，b为10，20
-				// function fun(a,b){
-				// 	var a = a || 10;
-				// 	var b = b || 20;
-				// 	console.log(a);
-				// 	console.log(b);
-				// }
-				// fun();
-			//es6设置函数默认值
-				// function fun(a=10,b=20){
-				// 	console.log(a);
-				// 	console.log(b);
-				// }
-				// fun();
-			//箭头函数
-				//es5函数
-					// var fun= function(){
 
-					// }
-					// fun();
-				//es6箭头函数
-					// const fun = ()=>{
-					// 	console.log("hhh")
-					// }
-					// fun();
-				//当函数内部至于返回值时，可以省略花括号直接写,箭头前面时形参，箭头后是返回值
-					// const fun = num => num*num;
-					// console.log(fun(10));
+		// 数组解构赋值
+		// let [num1, num2] = [100, 80];
+		// // 以前调换两个值的办法
+		// var temp = num1;
+		// num1 = num2;
+		// num2 = temp;
+		// // 用解构赋值方法便于调换两个值
+		// [num1, num2] = [num2, num1];
+		// console.log(num1);
+		// console.log(num2);
+
+		//对象的解构赋值
+		// let {name, age} = {name: "xiaoming", age: 22};
+		// console.log(name);
+		// console.log(age);
+		// // 对象赋值会按照属性名找属性值
+		// function fun({name, age}){
+		// 	console.log(age);
+		// 	console.log(name);
+		// }
+		// let obj = {
+		// 	name:"xx",
+		// 	age:21
+		// }
+		// fun(obj);
+
+		//es5函数的默认值,如果没有实参传进来，a，b为10，20
+		// function fun(a,b){
+		// 	var a = a || 10;
+		// 	var b = b || 20;
+		// 	console.log(a);
+		// 	console.log(b);
+		// }
+		// fun();
+
+		//es6设置函数默认值
+		// function fun(a = 10, b = 20){
+		// 	console.log(a);
+		// 	console.log(b);
+		// }
+		// fun();
+
+		// 箭头函数
+		// const fun = () => {
+		// 	console.log("hhh")
+		// }
+		// fun();
+		
+		// 箭头函数，当函数内部是返回值时，可以省略花括号直接写,箭头前面时形参，箭头后是返回值
+		// const fun = num => num * num;
+		// console.log(fun(10));
 	</script>
 </body>
 </html>

@@ -6,40 +6,46 @@
 </head>
 <body>
 	<script>
-		// var arr = ["a","b","a","c","d"];
-		// function noR(array){
+		var arr = ["a", "b", "a", "c", "d"];
+
+		// 推荐
+		var result = [...new Set(arr)];
+		console.log(result);
+
+		// 推荐
+		// function deleteDupli(array){
 		// 	var newArr = [];
 		// 	var obj = {};
-		// 	for(var i = 0;i<array.length;i++){
-		// 		if(obj[array[i]]==undefined){
-		// 			obj[array[i]]=1;
+		// 	for(var i = 0; i < array.length; i++){
+		// 		if(obj[array[i]] == undefined){
+		// 			obj[array[i]] = 1;
 		// 			newArr.push(array[i]);
 		// 		}
 		// 	}
 		// 	return newArr;
 		// }
-		// var result = noR(arr);
+		// var result = deleteDupli(arr);
 		// console.log(result)
 
-		var arr = ["a","b","a","c","d"];
-		function noR(array){
-			var newArr = [];
-			var bool=true;
-			for(var i=0;i<array.length;i++){
-				bool=true;
-				for(var j=0;j<newArr.length;j++){
-					if(newArr[j]===array[i]){
-						bool=false;
-					}
-				}
-				if(bool){
-					newArr.push(arr[i]);
-				}
-			}
-			return newArr;
-		}
-		var result = noR(arr);
-		console.log(result)
+		// 不推荐
+		// function deleteDupli(array){
+		// 	var newArr = [];
+		// 	var bool=true;
+		// 	for(var i=0;i<array.length;i++){
+		// 		bool=true;
+		// 		for(var j=0;j<newArr.length;j++){
+		// 			if(newArr[j]===array[i]){
+		// 				bool=false;
+		// 			}
+		// 		}
+		// 		if(bool){
+		// 			newArr.push(arr[i]);
+		// 		}
+		// 	}
+		// 	return newArr;
+		// }
+		// var result = deleteDupli(arr);
+		// console.log(result)
 	</script>
 </body>
 </html>

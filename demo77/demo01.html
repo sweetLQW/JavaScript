@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设计模式之单例模式</title>
+</head>
+<body>
+    <button class="add-div">点击增加div</button>
+    <script>
+        function singleton(fn) {
+            let status = null;
+            return function () {
+                return (status || (status = fn.apply(this, arguments)));
+            }
+        }
+
+        // 例一
+        function ConsleName(name) {
+            this.name = name;
+        }
+        ConsleName.prototype.getName = function() {
+            console.log(this.name);
+        }
+
+        let fun1 = singleton(function(name){
+            let result = new ConsleName(name);
+            return result;
+        });
+        fun1('lily').getName();
+        fun1('lqw').getName();
+
+
+        // 例二：点击按钮生成一个div标签
+        let createSingleDiv = singleton(createDiv);
+        document.getElementsByClassName('add-div')[0].addEventListener('click', function() {
+            let div = createSingleDiv();
+            document.body.appendChild(div);
+        })
+        function createDiv() {
+            let div = document.createElement('div');
+            div.innerText = '我是新增的div';
+            return div;
+        }
+
+    </script>
+</body>
+</html>

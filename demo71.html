@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>once函数(只能调用一次)</title>
+</head>
+<body>
+    <script>
+        function onceFun(f) {
+            let status = false;
+            return function() {
+                return status || (status = f.apply(null, arguments));
+                // if (status) {
+                //     f.apply(null, arguments);
+                //     status = false;
+                // }
+            }
+        }
+
+        function f(param) {
+            return param;
+        }
+
+        let fun = onceFun(f);
+        console.log(fun('lqw')); // lqw
+        console.log(fun('hxy')); // lqw
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设计模式之代理模式</title>
+</head>
+<body>
+    <script>
+        function consoleStr (str) {
+            console.log(str);
+        }
+        
+        // 经过代理函数，对输出的文本进行判断，文本为空则不输出。文本不为空，把文本中的"-"删除。
+        // 页面滚动或文本输入时使用事件节流防抖也属于代理模式
+        function proxy(str) {
+            if (!str) { return; }
+            str = str.replace(/\-/, '');
+            consoleStr(str);
+        }
+
+        proxy('name-lily');
+        proxy();
+        proxy('lily');
+
+    </script>
+</body>
+</html>

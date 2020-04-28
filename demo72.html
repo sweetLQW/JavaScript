@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js判断类型</title>
+</head>
+<body>
+    <script>
+        // typeof 适合检测原始数据类型
+        console.log(typeof 1); // number
+        console.log(typeof '1'); // string
+        console.log(typeof true); // boolean
+        console.log(typeof undefined); // undefined
+
+        console.log(typeof new Number()); // object
+        console.log(typeof null); // object
+        console.log(typeof []); // object
+        console.log(typeof {}); // object
+        console.log(typeof new Function()); // function
+
+
+        // instanceof 适合检测引用数据类型
+        console.log(1 instanceof Number); // false
+        console.log('1' instanceof String); // false
+        console.log(true instanceof Boolean); // false
+
+        console.log(new Number() instanceof Number); // true
+        console.log(new Number() instanceof Object); // true
+        console.log([] instanceof Array); // true
+        console.log([] instanceof Object); // true
+        console.log({} instanceof Object); // true
+        console.log(new Function() instanceof Object); // true
+        console.log(new Function() instanceof Function); // true
+
+
+        // Object.prototype.toString.call()
+        console.log(Object.prototype.toString.call(1)); // [object Number]
+        console.log(Object.prototype.toString.call(new Number(1))); // [object Number]
+        console.log(Object.prototype.toString.call('1')); // [object String]
+        console.log(Object.prototype.toString.call(true)); // [object Boolean]
+        console.log(Object.prototype.toString.call(undefined)); // [object Undefined]
+        console.log(Object.prototype.toString.call(null)); // [object Null]
+        console.log(Object.prototype.toString.call(new Function())); // [object Function]
+        console.log(Object.prototype.toString.call({})); // [object Object]
+        console.log(Object.prototype.toString.call([])); // [object Array]
+        console.log(Object.prototype.toString.call(/ /)); // [object RegExp]
+        console.log(Object.prototype.toString.call(new Date())); // [object Date]
+
+    </script>
+</body>
+</html>

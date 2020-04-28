@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设计模式之发布订阅模式</title>
+</head>
+<body>
+    <script>
+        var Event = (function() {
+            var subscribeList = {},
+                subscribe,
+                publish,
+                unSubscribe;
+
+            subscribe = function(type, fn) {
+                if (!type || typeof fn !== 'function') { return; }
+                !subscribeList[type] && (subscribeList[type] = []);
+                subscribeList[type].push(fn);
+            }
+
+            publish = function(type) {
+                var typeList = subscribeList[type];
+                if (!type || !typeList || !typeList.length) { return; }
+                var args = Array.prototype.slice.apply(arguments);
+                args.splice(0, 1);
+                typeList.forEach(element => {
+                    element.apply(null, args);
+                });
+            }
+
+            unSubscribe = function(type, fn) {
+                var typeList = subscribeList[type];
+                if (!type || typeof fn !== 'function' || !typeList || !typeList.length) { return; }
+                typeList.forEach((element, index) => {
+                    if (element === fn) {
+                        typeList.splice(index, 1);
+                    }
+                })
+            }
+
+            return {
+                subscribe: subscribe,
+                publish: publish,
+                unSubscribe: unSubscribe,
+            }
+        })()
+
+        // lily订阅消息 - milk
+        Event.subscribe('milk', fn1 = function(name) {
+            console.log('lily接收' + name);
+        })
+
+        // Alan订阅消息 - milk
+        Event.subscribe('milk', fn2 = function(name) {
+            console.log('Alan接收' + name);
+        })
+
+        // cindy订阅消息 - milk
+        Event.subscribe('milk', fn3 = function(name) {
+            console.log('cindy接收' + name);
+        })
+
+        // cindy订阅消息 - cake
+        Event.subscribe('cake', fn4 = function(name) {
+            console.log('cindy接收' + name);
+        })
+
+        Event.publish('milk', '牛奶');
+        Event.publish('cake', '蛋糕');
+
+        // 取消lily订阅的milk消息
+        Event.unSubscribe('milk', fn1);
+        console.log('【公告】lily取消订购牛奶');
+
+        Event.publish('milk', '牛奶');
+
+
+    </script>
+</body>
+</html>

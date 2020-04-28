@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>算法之归并排序</title>
+</head>
+<body>
+    <script>
+        // 以升序为例
+        // 无序算法
+        // 平均时间复杂度O(nlogn)
+        // 空间复杂度O(n)
+
+        let sourceArr = [8, 2, 6, 9, 4, 8, 10];
+        let resultArr = mergeSort(sourceArr);
+        console.log(resultArr);
+
+        function mergeSort(arr) {
+            if (arr.length <= 1) { return arr; }
+            let pivotIndex = Math.floor(arr.length / 2);
+            let left = arr.splice(0, pivotIndex);
+            let right = arr;
+            return merge(mergeSort(left), mergeSort(right));
+        }
+
+        function merge(leftArr, rightArr) {
+            let arr = [];
+            while (leftArr.length && rightArr.length) {
+                if(leftArr[0] < rightArr[0]) {
+                    arr.push(leftArr.shift());
+                } else {
+                    arr.push(rightArr.shift());
+                }
+            }
+            return arr.concat(leftArr, rightArr);
+        }
+
+    </script>
+</body>
+</html>

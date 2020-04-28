@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>算法之冒泡排序</title>
+</head>
+<body>
+    <script>
+        // 以升序为例
+        // 冒泡排序是无序算法，紧邻的两个进行对比，如果第一个比第二个大，调换位置，反之不调换，然后第二个与第三个继续比较。
+        // 平均时间复杂度O(n²)
+        // 空间复杂度O(1)
+
+        let sourceArr = [8, 2, 6, 9, 4, 8, 10];
+        let resultArr = bubbleSort(sourceArr);
+        console.log(resultArr);
+
+        function bubbleSort(arr) {
+            for(let i = 0; i < arr.length; i++) {
+                // status作用是当数组中所有数据比较一次之后位置没有任何变动，说明此数组已经按照期望排序成功，直接退出循环即可。
+                let status = true;
+                for(let j = 0; j < arr.length - 1 - i; j++) {
+                    if (arr[j] > arr[j+1]) {
+                        [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
+                        status = false;
+                    }
+                }
+                if (status) {
+                    break;
+                }
+            }
+            return arr;
+        }
+
+    </script>
+</body>
+</html>

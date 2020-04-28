@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深拷贝（复制）</title>
+</head>
+<body>
+	<script src="script/jquery.js"></script>
+    <script>
+        // 方法一 通过遍历实现
+        let sourceObj = {
+            a: new String('1'),
+            b: 2,
+            c: undefined,
+            d: [1, 2, 3, 4],
+            e: function() {
+                console.log(1);
+            }
+        }
+        function deepClone(obj) {
+            let type = Object.prototype.toString.call(obj), 
+                newObj;
+            switch (type) {
+                case '[object Object]': newObj = {};break;
+                case '[object Array]': newObj = [];break;
+                default: return obj;
+            }
+            for(let i in obj) {
+                let itemType = Object.prototype.toString.call(obj[i]); 
+                newObj[i] = /\[object Object\]|\[object Array\]/.test(itemType) ? deepClone(obj[i]) : obj[i];
+            }
+            return newObj;
+        }
+        let currentObj = deepClone(sourceObj);
+        sourceObj.b = 5; // 不会改变
+        sourceObj.d.push(5); // 不会改变
+        console.log(currentObj);
+        console.log(deepClone(1)); // 1
+        console.log(deepClone(null)); // null
+        
+        // 方法二 通过jQuery的extend方法实现 
+        // $.extend([deep], target, ...source)，deep是否深复制，默认false
+        // 深浅复制时，undefined值不会复制
+        // 深复制时，target普通值改变，currentObj也会改变，所以target最好直接使用一个空对象
+        // 浅复制时，target普通值改变，currentObj不会改变；sourceObj引用值改变时，currentObj会改变
+        // let sourceObj = {
+        //     a: new String('1'),
+        //     b: 2,
+        //     c: undefined,
+        //     d: [1, 2, 3, 4],
+        //     e: function() {
+        //         console.log(1);
+        //     }
+        // }
+        // // 这样可以实现深复制
+        // let currentObj = $.extend(true, {}, sourceObj);
+        // sourceObj.b = 5; // 不会改变
+        // sourceObj.d.push(5); // 不会改变
+        // console.log(currentObj);
+
+        // JSON.parse(JSON.stringify()) 可以理解为深复制，缺点就是函数或undefined的属性会被忽略
+        // JSON.stringify()在转化过程中，布尔值、数字、字符串的包装对象在序列化过程中会自动转换成对应的原始值
+        // let sourceObj = {
+        //     a: new String('1'),
+        //     b: 2,
+        //     c: undefined,
+        //     d: [1, 2, 3, 4],
+        //     e: function() {
+        //         console.log(1);
+        //     }
+        // }
+        // // c和e属性不会被复制
+        // let currentObj = JSON.parse(JSON.stringify(sourceObj));
+        // sourceObj.a = 5; // currentObj中不会改变
+        // sourceObj.d.push(5); // currentObj中不会改变
+        // console.log(currentObj);
+
+        // 如果复制的对象或数组的值都为基本类型，则也可以用以下方法实现深拷贝
+        // Object.assign()，扩展运算符，concat，slice（数组的浅拷贝），jQuery.extend()
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下划线连接命名转成驼峰命名</title>
+</head>
+<body>
+    <script>
+        let str = 'name-lily';
+        function nameChanged(name) {
+            if (!name || typeof name !== 'string') { return; }
+            let newNameArr = name.split('-');
+            let result = newNameArr[0].toLowerCase();
+            for (let i = 1; i < newNameArr.length; i++) {
+                result = result + newNameArr[i].slice(0, 1).toUpperCase() + newNameArr[i].slice(1).toLowerCase();
+            }
+            return result;
+        }
+        let newStr = nameChanged(str);
+        console.log(newStr);
+    </script>
+</body>
+</html>

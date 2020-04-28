@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js全排列</title>
+</head>
+<body>
+    <script>
+        var arr = [1, 2, 3, 4];
+        function perm(arr) {
+            (function fn(source, result) {  
+                if (source.length == 0) {
+                    console.log('全排列：', result);
+                }else {
+                    for (var i = 0; i < source.length; i++) { 
+                        fn(source.slice(0, i).concat(source.slice(i + 1)), result.concat(source[i])); 
+                    }
+                }
+            })(arr, []);  
+        }  
+        perm(arr);  
+
+    </script>
+</body>
+</html>

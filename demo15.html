@@ -6,27 +6,66 @@
 </head>
 <body>
 	<script>
-		// var arr1 = ["苹果","香蕉"];
-		// var arr2 = ["水蜜桃","葡萄"];
-		// var arr3 = arr1.concat(arr2);//把arr1和arr2连接起来赋给arr3
+		var arr1 = [2, 4, 5, 3, 1];
+		var arr2 = ["苹果", "香蕉", "水蜜桃", "葡萄"];
+
+		// 1. concat
+		// var arr3 = arr1.concat(arr2); // 把arr1和arr2连接起来赋给arr3
 		// console.log(arr3);
 
-		// var arr1 = ["苹果","香蕉"];
-		// arr1.reverse();//改变元素的顺序，变成倒序
+		// 2. reverse，改变原数组
+		// arr1.reverse(); // 改变元素的顺序，变成倒序
 		// console.log(arr1);
 
-		// var arr1 = ["苹果","香蕉","葡萄"];
-		// arr1.splice(2,0,"hhh");//（下标，从下标开始要删除的位数，在此位置上要添加的对象）
+		// 3. sort，改变原数组
+		// function fun(a,b){
+		// 	return a-b;
+		// }
+		// arr1.sort(fun); // 添加一个函数按数字排列，a-b升序，b-a降序
+		// //arr1.sort(); // 按照字符串升序排列
 		// console.log(arr1)
 
-		var arr1 = [1,2,10];
-		function fun(a,b){
-			a-b;
-		}
-		arr1.sort(fun);//添加一个函数按数字排列，a-b升序，b-a降序
-		//arr1.sort();//按照字符串升序排列
-		console.log(arr1)
+		// 4. splice(index, howmany[, item1, ..., itemx])，添加或删除元素
+		// 会改变原数组，返回被删除的元素的数组
+		// 必需，index 开始删除的下标
+		// 可选，howmany删除的数量，如果为0，就是不删除，如果没有设置，则从index删除到数组结束的所有元素
+		// 可选，在index位置上需要添加的item
+		// arr1.splice(2, 0, "hhh");//（下标，从下标开始要删除的位数，在此位置上要添加的对象）
+		// var arr3 = arr2.splice(1);
+		// console.log(arr1);
+		// console.log(arr2);
+		// console.log(arr3);
 
+		// 5. slice(start, end)，从已有的数组中返回选定的元素，不改变原数组
+		// start: 必需。规定从何处开始选取。如果是负数，那么它规定从数组尾部开始算起的位置。也就是说，-1 指最后一个元素，-2 指倒数第二个元素，以此类推。
+		// end: 可选。规定从何处结束选取。该参数是数组片断结束处的数组下标。如果没有指定该参数，那么切分的数组包含从 start 到数组结束的所有元素。如果这个参数是负数，那么它规定的是从数组尾部开始算起的元素。
+		// var arr3 = arr1.slice(2);
+		// console.log(arr3);
+
+		// 6. push 从尾部新增元素
+		// arr1.push('new-item1');
+		// arr1.push('new-item2', 'new-item3');
+		// console.log(arr1);
+
+		// 7. pop 从尾部删除元素
+		// arr1.pop();
+		// arr1.pop();
+		// console.log(arr1);
+
+		// 8. unshift 从头部新增元素
+		// arr1.unshift('new-item1');
+		// arr1.unshift('new-item2', 'new-item3');
+		// console.log(arr1);
+
+		// 9. shift 从头部删除元素
+		// arr1.shift();
+		// arr1.shift();
+		// console.log(arr1);
+		
+		// 10. map 遍历原数组，使用返回值生成新数组，不改变原数组
+		var arr3 = arr1.map(item => item * 2);
+		console.log(arr3);
+		
 	</script>
 </body>
 </html>

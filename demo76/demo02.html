@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>算法之快速排序</title>
+</head>
+<body>
+    <script>
+        // 以升序为例
+        // 无序算法
+        // 平均时间复杂度O(nlogn)
+        // 空间复杂度O(logn)
+
+        let sourceArr = [8, 2, 6, 9, 4, 8, 10];
+        let resultArr = quickSort(sourceArr);
+        console.log(resultArr);
+
+        function quickSort(arr) {
+            if (arr.length <= 1) { return arr; }
+            let pivotIndex = 0; // Math.floor(arr.length / 2)
+            let pivot = arr.splice(pivotIndex, 1)[0];
+            let left = [];
+            let right = [];
+            for(let i = 0; i < arr.length; i++) {
+                if (arr[i] < pivot) {
+                    left.push(arr[i]);
+                } else {
+                    right.push(arr[i]);
+                }
+            }
+            return quickSort(left).concat([pivot], quickSort(right));
+        }
+
+    </script>
+</body>
+</html>

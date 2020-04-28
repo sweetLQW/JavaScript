@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6 Proxy</title>
+</head>
+<body>
+    <p>
+        Proxy 对象用于定义基本操作的自定义行为（如属性查找、赋值、枚举、函数调用等）。<br>
+        Proxy 意为代理（代理器），可以用于修改某些操作的默认行为，通过设置一层拦截，对外界的访问进行过滤和改写。
+    </p>
+    <br>
+
+    <p>术语：</p>
+    <ul>
+        <li>handler: 包含陷阱（trap）的占位符对象，可译为处理器对象。</li>
+        <li>traps: 提供属性访问的方法。这类似于操作系统中捕获器的概念，一般直译作陷阱。</li>
+        <li>target: 被 Proxy 代理虚拟化的对象。它常被作为代理的存储后端。根据目标验证关于对象不可扩展性或不可配置属性的不变量（保持不变的语义）。</li>
+    </ul>
+    <br>
+
+    <p>语法：const p = new Proxy(target, handler)</p>
+    <ul>
+        <li>target: 要使用 Proxy 包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）。</li>
+        <li>handler: 一个通常以函数作为属性的对象，用来定制“拦截”行为。</li>
+    </ul>
+
+    <script>
+        // 一、当某对象中的属性不存在时，输出默认值1
+        const proxyObj1 = new Proxy({}, {
+            get: function(obj, prop, c) {
+                return prop in obj ? obj[prop] : 1;
+            }
+        })
+        proxyObj1.a = 'a';
+        console.log(proxyObj1.a, proxyObj1.b);
+
+        // 二、转发对象，当handler为一个空对象时，对proxyObj2的操作会转发到target上
+        let target = {b: 'b', c: 'c'};
+        const proxyObj2 = new Proxy(target, {})
+        proxyObj2.a = 'a';
+        proxyObj2.b = 'change';
+        delete proxyObj2.c;
+        console.log(proxyObj2, target);
+
+        // 以后再继续补充
+        
+    </script>
+</body>
+</html>

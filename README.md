@@ -23,8 +23,8 @@
 ##### demo22 二分查找
 ##### demo23 构造函数和原型对象
 ##### demo24 ES6变量赋值
-##### demo25 ES6常量赋值
-##### demo26 ES6解构赋值
+##### demo25 ES6模板字符串
+##### demo26 ES6解构赋值及Class类
 ##### demo27 克隆
 ##### demo28 Document对象compatMode方法
 ##### demo29 Document对象readyState方法
@@ -67,3 +67,16 @@
 ##### demo66 Map
 ##### demo67 Iterator遍历器(处理所有不同的数据结构的机制)，可以使用for of遍历
 ##### demo68 ES6模块化（module）
+##### demo69 浅拷贝（复制）
+##### demo70 深拷贝（复制）
+##### demo71 once函数（只能调用一次，设计模式之单例模式）
+##### demo72 js判断数据类型
+##### demo73 去除字符串首尾空格
+##### demo74 js全排列
+##### demo75 js跨域
+##### demo76 算法
+##### demo77 js设计模式
+##### demo78 下划线连接命名转成驼峰命名
+##### demo79 ES6 Proxy
+
+
