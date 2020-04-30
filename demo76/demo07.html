@@ -3,9 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>算法之顺序查找</title>
+    <title>算法之二分查找</title>
 </head>
 <body>
-    
+    <script>
+        /* 
+        * 二分查找/折半查找
+        * 元素需要有序，以升序为例
+        * 平均时间复杂度O(logn)
+        * 1.将数组拆分为两半进行查找，需要找一个中间的基准值，如果和基准值相等，返回当前基准值索引
+          2.如果数值比基准值小，则去左边查找，反之去右边查找
+        */
+
+        let sourceArr = [2, 6, 8, 9, 10, 11, 17, 19];
+        let result = dichotomySearch(sourceArr, 6);
+        console.log(result);
+
+        function dichotomySearch(arr, value, start = 0, end = arr.length - 1) {
+            if (start > end) { return -1; }
+            let mid = Math.floor((start + end) / 2);
+            if(arr[mid] === value) {
+                return mid;
+            }
+            if(value < arr[mid]) {
+                end = mid - 1;
+                return dichotomySearch(arr, value, start, end);
+            } else {
+                start = mid + 1;
+                return dichotomySearch(arr, value, start, end);
+            }
+        }
+    </script>
 </body>
 </html>

@@ -6,6 +6,32 @@
     <title>算法之插入排序</title>
 </head>
 <body>
-    
+    <script>
+        /* 
+        * 以升序为例
+        * 平均时间复杂度O(n²)
+        * 空间复杂度O(1)
+        * 1.找到每个值的位置，插入此位置，其他数据向后移位
+        */
+
+        let sourceArr = [8, 2, 6, 9, 4, 8, 10];
+        let resultArr = insertionSort(sourceArr);
+        console.log(resultArr);
+
+        function insertionSort(arr) {
+            let current, preIndex;
+            for(let i = 1; i < arr.length; i++) {
+                current = arr[i];
+                preIndex = i - 1;
+                while(preIndex >= 0 && current < arr[preIndex]) {
+                    arr[preIndex + 1] = arr[preIndex];
+                    preIndex--;
+                }
+                arr[preIndex + 1] = current;
+            }
+            return arr;
+        }
+
+    </script>
 </body>
 </html>

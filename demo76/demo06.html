@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>算法之二分查找</title>
+    <title>算法之顺序查找</title>
 </head>
 <body>
-    
+    <script>
+        /* 
+        * 顺序查找
+        * 以升序为例
+        * 平均时间复杂度O(n)
+        */
+
+        let sourceArr = [2, 6, 8, 9, 10, 11, 17, 19];
+        let result = sortSearch(sourceArr, 6);
+        console.log(result);
+
+        function sortSearch(arr, value) {
+           for(var i in arr) {
+               if(arr[i] === value) {
+                   return i;
+               }
+           }
+           return -1;
+        }
+    </script>
 </body>
 </html>

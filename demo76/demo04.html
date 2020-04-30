@@ -6,6 +6,32 @@
     <title>算法之选择排序</title>
 </head>
 <body>
-    
+    <script>
+        /* 
+        * 以升序为例
+        * 平均时间复杂度O(n²)
+        * 空间复杂度O(1)
+        * 1.每次遍历找到最小或最大值，交换位置
+        */
+
+        let sourceArr = [8, 2, 6, 9, 4, 8, 10];
+        let resultArr = selectionSort(sourceArr);
+        console.log(resultArr);
+
+        function selectionSort(arr) {
+            let minIndex;
+            for(let i = 0; i < arr.length - 1; i++) {
+                minIndex = i;
+                for(let j = i + 1; j < arr.length; j++) {
+                    if (arr[j] < arr[minIndex]) {
+                        minIndex = j;
+                    }
+                }
+                [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+            }
+            return arr;
+        }
+
+    </script>
 </body>
 </html>
