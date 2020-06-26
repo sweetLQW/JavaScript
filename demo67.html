@@ -30,26 +30,26 @@
         var obj = {};
         console.log(arr[Symbol.iterator], obj[Symbol.iterator]);
         
-        // 实际上，这提供了一种简便机制，可以将任何部署了 Iterator 接口的数据结构，转为数组。
-        // 也就是说，只要某个数据结构部署了 Iterator 接口，就可以对它使用扩展运算符，将其转为数组。
-        var set = new Set().add('a').add('b').add('c');
-        console.log(set, [...set]);
+        // // 实际上，这提供了一种简便机制，可以将任何部署了 Iterator 接口的数据结构，转为数组。
+        // // 也就是说，只要某个数据结构部署了 Iterator 接口，就可以对它使用扩展运算符，将其转为数组。
+        // var set = new Set().add('a').add('b').add('c');
+        // console.log(set, [...set]);
 
 
         // 自己写next
-        var a = MakeNext([1, 2, 4]);
-        function MakeNext(arr) {
-            var index = 0;
-            return {
-                next: function() {
-                    return index < arr.length ? {value: arr[index++], done: false} : {value: undefined, done: true};
-                }
-            }
-        }
-        console.log(a.next());
-        console.log(a.next());
-        console.log(a.next());
-        console.log(a.next());
+        // var a = MakeNext([1, 2, 4]);
+        // function MakeNext(arr) {
+        //     var index = 0;
+        //     return {
+        //         next: function() {
+        //             return index < arr.length ? {value: arr[index++], done: false} : {value: undefined, done: true};
+        //         }
+        //     }
+        // }
+        // console.log(a.next());
+        // console.log(a.next());
+        // console.log(a.next());
+        // console.log(a.next());
 
         // 给对象添加Iterator遍历器属性，使对象可以用for of遍历
         var iteratorObj = {
@@ -76,6 +76,7 @@
         for (const iterator of iteratorObj) {
             console.log(iterator);
         }
+
     </script>
 </body>
 </html>

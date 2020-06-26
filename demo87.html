@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二分答案</title>
+</head>
+<body>
+    <script>
+        function sqrt(param, start = 1, end = param) {
+            let mid = (start + end)/2;
+            if (start + 0.000000000000001 > end) { return start };
+            if (mid*mid > param) {
+                end = mid;
+            } else {
+                start = mid;
+            }
+            return sqrt(param, start, end);
+        }
+        
+        console.log(sqrt(4));
+    </script>
+</body>
+</html>

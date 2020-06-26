@@ -6,46 +6,55 @@
 </head>
 <body>
 	<script>
-		var arr = ["a", "b", "a", "c", "d"];
+        let arr = [false, false, true, true, undefined, undefined, null, null, NaN, 0, 1, {}, {}, 'a', 'a', NaN];
 
-		// 推荐
-		var result = [...new Set(arr)];
-		console.log(result);
+        // 执行uniq方法直接改变原数组，返回被删除的数组
+        Array.prototype.uniq = function() {
+            let removeList = [];
+            for (let i = 0; i < this.length; i++) {
+                // 判断当前this[i]是否是NaN，如果是的话deleteNaN为true
+                let deleteNaN = false;
+                if (typeof this[i] === 'number' && this[i] !== this[i]) {
+                    deleteNaN = true;
+                }
+                for (let j = i + 1; j < this.length; j++) {
+                    if (!deleteNaN && this[i] === this[j]) {
+                        removeList.push(this.splice(j, 1)[0]);
+                    }
+                    if (deleteNaN && typeof this[j] === 'number' && this[j] !== this[j]) {
+                        removeList.push(this.splice(j, 1)[0]);
+                    }
+                }
+            }
+            return removeList;
+        }
+        console.log(arr.uniq());
+        console.log(arr);
 
-		// 推荐
-		// function deleteDupli(array){
-		// 	var newArr = [];
-		// 	var obj = {};
-		// 	for(var i = 0; i < array.length; i++){
-		// 		if(obj[array[i]] == undefined){
-		// 			obj[array[i]] = 1;
-		// 			newArr.push(array[i]);
-		// 		}
-		// 	}
-		// 	return newArr;
-		// }
-		// var result = deleteDupli(arr);
-		// console.log(result)
+        // // 执行uniqBySet方法不改变原数组，返回去重后的新数组
+        // // 利用ES6的Set对象的特性
+        // Array.prototype.uniqBySet = function() {
+        //     return [...new Set(this)];
+        // }
+        // console.log(arr.uniqBySet());
+        // console.log(arr);
 
-		// 不推荐
-		// function deleteDupli(array){
-		// 	var newArr = [];
-		// 	var bool=true;
-		// 	for(var i=0;i<array.length;i++){
-		// 		bool=true;
-		// 		for(var j=0;j<newArr.length;j++){
-		// 			if(newArr[j]===array[i]){
-		// 				bool=false;
-		// 			}
-		// 		}
-		// 		if(bool){
-		// 			newArr.push(arr[i]);
-		// 		}
-		// 	}
-		// 	return newArr;
-		// }
-		// var result = deleteDupli(arr);
-		// console.log(result)
+        // // 执行uniqT方法不改变原数组，返回去重后的新数组
+        // // 利用对象key值的唯一性，比较需要注意ele为对象时的判断
+        // Array.prototype.uniqByObj = function() {
+        //     let newArr = [];
+        //     let obj = {};
+        //     this.forEach(function(ele) {
+        //         if (obj[ele] === undefined || ele instanceof Object) {
+        //             obj[ele] = 1;
+        //             newArr.push(ele);
+        //         }
+        //     })
+        //     return newArr;
+        // }
+        // console.log(arr.uniqByObj());
+        // console.log(arr);
+
 	</script>
 </body>
 </html>

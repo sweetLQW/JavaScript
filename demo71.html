@@ -11,10 +11,6 @@
             let status = false;
             return function() {
                 return status || (status = f.apply(null, arguments));
-                // if (status) {
-                //     f.apply(null, arguments);
-                //     status = false;
-                // }
             }
         }
 

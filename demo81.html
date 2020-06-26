@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟vue双向数据绑定</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="msg">
+        <!-- <p>{{ msg }}</p> -->
+        {{ msg }}
+    </div>
+
+    <script>
+        // 解析v-model及{{}}并替换
+        function compile(node, vm) {
+            const reg = /\{\{(.*)\}\}/;
+            // 元素节点
+            if (node.nodeType === 1) {
+                let attrs = node.attributes;
+                for (let i = 0; i < attrs.length; i++) {
+                    if (attrs[i].nodeName === 'v-model') {
+                        const name = attrs[i].nodeValue;
+                        node.addEventListener('input', function(e) {
+                            vm[name] = e.target.value;
+                        })
+                        node.value = vm[name];
+                        node.removeAttribute('v-model');
+                    }
+                }
+                // 元素节点中的文本节点，可以暂时不考虑
+                // const textNode = node.childNodes[0];
+                // if (textNode && reg.test(textNode.nodeValue)) {
+                //     let name = RegExp.$1;
+                //     name = name.trim();
+                //     // textNode.nodeValue = vm[name];
+                //     new Watcher(vm, textNode, name);
+                // }
+            }
+            // 文本节点
+            if (node.nodeType === 3) {
+                if (reg.test(node.nodeValue)) {
+                    let name = RegExp.$1;
+                    name = name.trim();
+                    // node.nodeValue = vm[name];
+                    new Watcher(vm, node, name);
+                }
+            }
+        }
+        // 把解析好的节点放入fragment
+        function nodeToFragment(node, vm) {
+            const fragment = document.createDocumentFragment();
+            let child;
+            while(child = node.firstChild) {
+                compile(child, vm);
+                fragment.appendChild(child);
+            }
+            return fragment;
+        }
+        // defineReactive
+        function defineReactive(vm, key, val) {
+            const dep = new Dep();
+            Object.defineProperty(vm, key, {
+                get: function() {
+                    if(Dep.target) {
+                        dep.addSub(Dep.target);
+                    }
+                    return val;
+                },
+                set:function(newValue) {
+                    if (newValue === val) {
+                        return;
+                    }
+                    val = newValue;
+                    dep.notify();
+                    console.log('set', newValue);
+                }
+            })
+        }
+        // 观察对象的每一个值
+        function observe(obj, vm) {
+            for(let key of Object.keys(obj)) {
+                defineReactive(vm, key, obj[key]);
+            }
+        }
+        // watcher
+        function Watcher(vm, node, name) {
+            Dep.target = this;
+            this.vm = vm;
+            this.node = node;
+            this.name = name;
+            this.update();
+            Dep.target = null;
+        }
+        Watcher.prototype = {
+            update() {
+                this.get();
+                this.node.nodeValue = this.value;
+            },
+            get() {
+                this.value = this.vm[this.name];
+            }
+        }
+        // 事件处理中心
+        function Dep() {
+            this.subList = [];
+        }
+        Dep.prototype = {
+            addSub(sub) {
+                this.subList.push(sub);
+            },
+            notify() {
+                this.subList.forEach(sub => {
+                    sub.update();
+                });
+            }
+        }
+
+        function Vue(options) {
+            this.data = options.data;
+            const id = options.el;
+            observe(this.data, this);
+            const dom = nodeToFragment(document.querySelector(id), this);
+            document.querySelector(id).appendChild(dom);
+        }
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello'
+            },
+        })
+
+    </script>
+</body>
+</html>

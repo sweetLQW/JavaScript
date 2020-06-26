@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实现斐波那契数列函数,返回第n个斐波那契数</title>
+</head>
+<body>
+    <script>
+        // function fibonaci(n) {
+        //     if (n <= 2) { return 1; }
+        //     // 以下是n > 2的情况
+        //     let fibonaci = [1, 1];
+        //     for(let i = 3; i <= n; i++) {
+        //         fibonaci.push(fibonaci[i - 2] + fibonaci[i - 3]);
+        //     }
+        //     console.log(fibonaci);
+        //     return fibonaci[fibonaci.length - 1];
+        // }
+
+        // function fibonaci(n) {
+        //     if (n <= 2) { return 1; }
+        //     // 以下是n > 2的情况
+        //     let current, preA = 1, preB = 1;
+        //     for(let i = 3; i <= n; i++) {
+        //         current = preA + preB;
+        //         [preA, preB] = [current, preA];
+        //     }
+        //     return current;
+        // }
+
+        function fibonaci(n) {
+            if (n <= 2) { return 1; }
+            // 以下是n > 2的情况
+            return fibonaci(n - 1) + fibonaci(n - 2);
+        }
+
+        console.log(fibonaci(8));
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>根据包名，在指定空间中创建对象</title>
+</head>
+<body>
+    <script>
+        console.log(nameSpace({a: {test: 1, b: 2}}, 'a.b.c.d'));
+
+        function nameSpace(oNamespace, sPackage) {
+            let nameList = sPackage ? sPackage.split('.') : [];
+            if(nameList.length < 2) {return oNamespace;}
+            nameList.reduce((total, ele, index) => {
+                return index == 1 ? oNamespace[total][ele] = {} : total[ele] = {};
+            });
+            return oNamespace;
+        }
+    </script>
+</body>
+</html>

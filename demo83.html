@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>查找两个节点的最近的一个共同父节点，可以包括节点自身</title>
+</head>
+<body>
+    <div class="content">
+        <div class="box">
+            <p>dom1</p>
+            <div>
+                <p>dom2</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        commonParentNode(document.getElementsByTagName('p')[0], document.getElementsByTagName('p')[1]);
+        
+        function commonParentNode(oNode1, oNode2) {
+            var on1_parents = getParents(oNode1);
+            var on2_parents = getParents(oNode2);
+            var i = on1_parents.length;
+            var j = on2_parents.length;
+            while(i >= 0 && j >= 0 && on1_parents[i] === on2_parents[j]) {
+                i--;
+                j--;
+            }
+            return on1_parents[i + 1];
+        }
+
+        function getParents(oNode) {
+            var parents = [];
+            var parent = oNode;
+            while(parent) {
+                parents.push(parent);
+                parent = parent.parentNode;
+            }
+            return parents;
+        }
+    </script>
+</body>
+</html>

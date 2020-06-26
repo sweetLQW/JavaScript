@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实现parse方法（传入对象和字符串，输出对应对象值）</title>
+</head>
+<body>
+    <script>
+        let object = {
+            b: { c: 4 }, 
+            d: [
+                { e: 5 }, 
+                { e: 6 }
+            ]
+        };
+        
+        function parse(obj, param) {
+            let paramList = param.split(/\.|\[|\]\./);
+            let result;
+            if(paramList.length <= 1) {
+                return obj[paramList[0]] ? obj[paramList[0]] : 'undefined';
+            }
+            for(let item of paramList) {
+                result = result ? result[item] : obj[item];
+            }
+            return result;
+        }
+
+        console.log(parse(object, 'b.c') == 4);
+        console.log(parse(object, 'd[0].e') == 5);
+        console.log(parse(object, 'd.0.e') == 5);
+        console.log(parse(object, 'd[1].e') == 6); 
+        console.log(parse(object, 'd.1.e') == 6);
+        console.log(parse(object, 'f') == 'undefined'); 
+    </script>
+</body>
+</html>

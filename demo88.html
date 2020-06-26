@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手写js实现bind方法</title>
+</head>
+<body>
+    <script>
+        Function.prototype.myBind = function (obj, ...args1) {
+            const fn = this;
+            return function(...args2) {
+                fn.apply(obj, args1.concat(args2));
+            }
+        }
+
+        function foo(x, y) {
+            console.log(arguments);
+            this.age = x + y;
+            console.log(this);
+        }
+
+        const result = foo.myBind({name: 'lily'}, 25);
+        result(26);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>判断字符串长度</title>
+</head>
+<body>
+    <script>
+        /*
+        * bUnicode255For1 === true，则所有字符长度为 1
+        * bUnicode255For1 === false时，字符 Unicode 编码 > 255 则长度为2，反之长度为1
+        */
+        function strLength(s, bUnicode255For1) {
+            let length = s.length;
+            if(bUnicode255For1) {
+                return length;
+            } else {
+                for(const word of s) {
+                    // if(/[\u4e00-\u9fa5]/.test(word)){
+                    //     length++;
+                    // }
+                    if (word.charCodeAt() > 255) {
+                        length++;
+                    }
+                }
+                return length;
+            }
+        }
+
+        console.log(strLength('hello world, 牛客', false));
+    </script>
+</body>
+</html>
