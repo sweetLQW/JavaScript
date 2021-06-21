@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>顺序查找</title>
+</head>
+<body>
+    <script>
+        const arr = Array.from({length: 10}, () => Math.floor(Math.random() * 10));
+        console.log(arr);
+
+        /**
+         * 顺序查找 稳定
+         * 优点：对表中数据存储没有要求
+         * 缺点：数据很多时，平均查找长度较大，效率低
+         * 时间复杂度：O(n)
+         * @params {Array} list 数组
+         * @params {Number} item 要查找的元素
+         * @return {Number} 要查找的元素在数组中的位置
+         */
+        const linearSearch = (list, item) => {
+            let idx = -1;
+
+            if (Object.prototype.toString.call(list) !== '[object Array]') {
+                return idx;
+            }
+
+            // 判断入参是否正确 不正确直接返回-1
+            if (isNaN(item)) {return idx};
+
+
+            for (let i = 0; i < list.length; i++) {
+                if (list[i] === item) {
+                    idx = i;
+                    break;
+                }
+            }
+
+            return idx;
+        };
+
+        console.log(linearSearch(arr, 2));
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>快速排序</title>
+</head>
+<body>
+    <script>
+        let arr = Array.from({length: 20}, () => Math.floor(Math.random() * 20));
+        console.log(arr);
+
+        /**
+         * 快速排序 不稳定
+         * 时间复杂度：O(nlogn)
+         * @params {Array} list 要排序的数组
+         * @params {Number} [type=1] 1升序 -1降序
+        */
+        const quickSort = (list, type = 1) => {
+
+            if (Object.prototype.toString.call(list) !== '[object Array]') {
+                return list;
+            }
+
+            if (list.length <= 1) {
+                return list;
+            }
+
+            let len = list.length,
+                baseIndex = 0,
+                left = [],
+                right = [];
+
+            for (let i = 1; i < len; i++) {
+                if (type * (list[i] - list[baseIndex]) <= 0) {
+                    left.push(list[i]);
+                } else {
+                    right.push(list[i]);
+                }
+            }
+
+            return quickSort(left, type).concat([list[baseIndex]], quickSort(right, type));
+        }
+
+        console.log(quickSort(arr, -1));
+    </script>
+</body>
+</html>

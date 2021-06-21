@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二分查找</title>
+</head>
+<body>
+    <script>
+        const arr = Array.from({length: 20}, (i, index) => index);
+        console.log(arr);
+
+        /**
+         * 二分查找/折半查找
+         * 优点：速度快
+         * 缺点：对表中数据存储有要求，需要按顺序存储
+         * 时间复杂度：O(logn)
+         * @params {Array} list 数组
+         * @params {Number} item 要查找的元素
+         * @return {Number} 要查找的元素在数组中的位置
+         */
+        const binarySearch = (list, item) => {
+
+            if (Object.prototype.toString.call(list) !== '[object Array]') {
+                return -1;
+            }
+
+            // 判断入参是否正确 不正确直接返回-1
+            if (isNaN(item)) {return -1};
+
+            start = 0;
+            end = list.length - 1;
+
+			while (start <= end) {
+			 	let mid = Math.floor((start + end) / 2);
+
+                if(list[mid] == item) {
+					return mid;
+				}
+				else if (list[mid] < item) {
+					start = mid + 1;
+				}
+                else if(list[mid] > item) {
+					end = mid - 1;
+				}
+			}
+
+            return -1;
+
+        };
+
+        console.log(binarySearch(arr, 0));
+    </script>
+</body>
+</html>

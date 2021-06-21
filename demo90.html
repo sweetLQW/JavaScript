@@ -3,26 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>多维数组拆分</title>
+    <title>并发请求限制 - 原型版</title>
 </head>
 <body>
     <script>
-        var arr = [1, 2, [3, 4, [5, 6, [7, 8]]]]; 
-        
-        function flatArr (arr, level) {
-            if (arr.length < 1) { return arr;}
-            let newArr = [];
-            arr.forEach((element, index) => {
-                if (typeof element  === 'number' || !level) {
-                    newArr.push(element);
-                } else {
-                    level-- && newArr.push(...flatArr(element, level));
-                }
-            });
-            return newArr;
+        function AsyncLimit() {
+            this.taskList = [];
+            this.limit = 3;
+        }
+        AsyncLimit.prototype.addTask = function(task) {
+            this.taskList.push(task);
+        }
+        AsyncLimit.prototype.run = function(limit) {
+            if (this.taskList.length < 1) { return; }
+            limit && (this.limit = limit);
+            const minLimit = Math.min(this.taskList.length, this.limit);
+            for(let i = 0; i < minLimit; i++) {
+                this.limit--;
+                const task = this.taskList.shift();
+                task().then(res => {
+                    console.log(res);
+                }).catch(err => {
+                    console.log(err);
+                }).finally(() => {
+                    this.limit++;
+                    this.run();
+                })
+            }
         }
 
-        console.log(flatArr(arr, 2));
+        let fun = new AsyncLimit();
+        for(let i = 0; i < 10; i++) {
+            fun.addTask(
+                function() {
+                    return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            resolve(i);
+                        }, 200*i);
+                    })
+                }
+            );
+        }
+        fun.run(5);
+
     </script>
 </body>
 </html>

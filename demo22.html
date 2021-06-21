@@ -1,49 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
 </head>
+
 <body>
-	<script>
-		var arr = [1,2,5,7,9,10];
-		// function halfSearch(array,data){
-		// 	var low = 0;
-		// 	var up = array.length-1;
-		// 	while(low <= up){
-		//	 	var mid = Math.floor((low + up)/2);
-		// 		if(array[mid] < data){
-		// 			low = mid + 1;
-		// 		}else if(array[mid] > data){
-		// 			up = mid - 1;
-		// 		}else if(array[mid] == data){
-		// 			return mid;
-		// 		}
-		// 	}
-		// 	return -1;
-		// }
-		//二分查找
-		function halfSearch(array,data){
-			var low = 0;
-			var up = array.length-1;
-			var index = -1;
-			(function(){
-				var mid = Math.floor((low+up)/2);
-				if(low<=up){
-					if(array[mid]<data){
-						low = mid + 1;
-						arguments.callee();
-					}else if(array[mid]>data){
-						up = mid -1;
-						arguments.callee();
-					}else{
-						index = mid;
-					}
-				}
-			})();
-			return index;
-		};
-		console.log(halfSearch(arr,3));
-	</script>
+    <script>
+        let words = ["oath", "pea", "eat", "rain", "fla", "hkrv"];
+        let board = [
+            ['o', 'a', 'a', 'n'],
+            ['e', 't', 'a', 'e'],
+            ['i', 'h', 'k', 'r'],
+            ['i', 'f', 'l', 'v']
+        ]
+        // 输出: ["eat","oath"]
+
+        function dfsFun(words, board) {
+            let resultList = [];
+            for(let idx in words) {
+                if(search(words[idx], board)) {
+                    resultList.push(words[idx]);
+                    // console.log(words[idx] + '成功找到，resultList：', resultList);
+                    // console.log('end------------------------------------------');
+                } else {
+                    // console.log(words[idx] + '未找到');
+                    // console.log('end------------------------------------------');
+                }
+            }
+            function search(word, board, matchIdx = 0, i = 0, j = 0) {
+                if (matchIdx === word.length - 1) {
+                    return true;
+                }
+                if (i === board.length - 1 && j === board[i].length - 1) {
+                    return false;
+                }
+
+                let str = word.slice(matchIdx, matchIdx + 1);
+                // console.log(str);
+                if (board[i][j] === str) {
+                    let nextStr = word.slice(matchIdx + 1, matchIdx + 2);
+                    if (j + 1 < board[i].length && board[i][j + 1] === nextStr) {
+                        // console.log(nextStr + '匹配：右');
+                        matchIdx++;
+                        j++;
+                    } else if(j - 1 >= 0 && board[i][j - 1] === nextStr) {
+                        // console.log(nextStr + '匹配：左');
+                        matchIdx++;
+                        j--;
+                    } else if(i + 1 < board.length && board[i + 1][j] === nextStr) {
+                        // console.log(nextStr + '匹配：下');
+                        matchIdx++;
+                        i++;
+                    } else if(i - 1 >= 0 && board[i - 1][j] === nextStr) {
+                        // console.log(nextStr + '匹配：上');
+                        matchIdx++;
+                        i--;
+                    } else {
+                        // console.log('未找到下一个连读的匹配字母' + str);
+                        // j + 1 < board[i].length ? j++ : (i++;j = 0;);
+                        if (j + 1 < board[i].length) {
+                            j++;
+                        } else {
+                            i++;
+                            j = 0;
+                        }
+                    }
+                } else {
+                    // console.log('未找到匹配字母' + str);
+                    if (j + 1 < board[i].length) {
+                        j++;
+                    } else {
+                        i++;
+                        j = 0;
+                    }
+                }
+                // console.log(matchIdx, '---------------------------');
+                // console.log(i, j, '-------------------------');
+                return search(word, board, matchIdx, i, j);
+            }
+            console.log(resultList);
+            return resultList;
+        }
+
+        dfsFun(words, board);
+    </script>
 </body>
+
 </html>
